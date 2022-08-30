@@ -1,12 +1,12 @@
-import Nav from "./Nav/Nav"
+import Nav from "./Nav/Nav";
 
-const Layout = ({children}) => {
+const Layout = ({ children }) => {
   return (
     <>
-    <Nav />
-    <main>{children}</main>
+      <Nav />
+      <main className="w-full h-[90%] flex">{children}</main>
     </>
-  )
-}
+  );
+};
 
-export default Layout
+export default Layout;

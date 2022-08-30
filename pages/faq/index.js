@@ -1,12 +1,9 @@
-import Head from "next/head";
-import Image from "next/image";
-
-export default function Home() {
+const index = () => {
   return (
     <div className="h-full w-full flex flex-col items-center">
       <div className="w-fit h-1/5 flex items-center justify-center font-RobotoMono font-bold text-7xl">
         <div className="flex h-fit w-fit bg-gray-100 rounded-2xl shadow justify-center items-center">
-          Caudill&apos;s Crafts
+          FAQ
         </div>
       </div>
       <div className="w-3/4 h-1/2 text-left font-Roboto text-xl">
@@ -19,5 +16,7 @@ export default function Home() {
         </div>
       </div>
     </div>
-  );
+  )
 }
+
+export default index
