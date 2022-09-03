@@ -2,6 +2,7 @@ import Product from "../../components/Card/Card";
 import data from "../../data";
 import { server } from "../../config";
 import Link from "next/link";
+import Card from "../../components/Card/Card";
 
 const index = ({ categories }) => {
   console.log(categories);
@@ -13,16 +14,14 @@ const index = ({ categories }) => {
         </div>
       </div>
       <div className="flex justify-center items-center w-full h-full font-Roboto text-xl">
-        <div className="flex flex-col h-fit w-3/4 text-left justify-center items-center">
+        <div className="flex flex-row h-fit w-3/4 text-left justify-center items-center gap-2">
           {categories.map((category) => (
-            <Link
-              href={`/shop/${category.name.toLowerCase()}`}
-              key={category.name}
-            >
-              <a>
-                <h3>Name: {category.name}</h3>
-              </a>
-            </Link>
+            <div key={category.name}>
+              <Card
+                name={category.name}
+                url={`/shop/${category.name.toLowerCase()}`}
+              />
+            </div>
           ))}
         </div>
       </div>

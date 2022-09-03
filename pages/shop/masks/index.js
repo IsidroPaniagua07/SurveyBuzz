@@ -1,29 +1,29 @@
-import { server } from "../../../config"
+import { server } from "../../../config";
+import Card from "../../../components/Card/Card";
 
 const index = ({ masks }) => {
-  console.log(masks)
   return (
-    <div>
-      {masks.map(mask => {
+    <div className="flex flex-row gap-2">
+      {masks.map((mask) => {
         return (
           <div key={mask.name}>
-            {mask.name}
+            <Card name={mask.name} url={`/shop/masks/${mask.id}`} />
           </div>
-        )
+        );
       })}
     </div>
-  )
-}
+  );
+};
 
 export const getStaticProps = async () => {
-  const res = await fetch(`${server}/api/masks`)
-  const masks = await res.json()
+  const res = await fetch(`${server}/api/masks`);
+  const masks = await res.json();
 
   return {
     props: {
-      masks
-    }
-  }
-}
+      masks,
+    },
+  };
+};
 
-export default index
+export default index;

@@ -1,5 +1,5 @@
-import {productsData} from '../../../data'
+import {productData} from '../../../data'
 
 export default function handler(req, res) {
-  res.status(200).json(productsData.shirts)
+  res.status(200).json(productData.shirts)
 }

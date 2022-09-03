@@ -27,15 +27,15 @@ const productData =
 
         shirts: [
             {
-                id: 1,
+                id: 4,
                 name: "Micky Mouse shirt"
             },
             {
-                id: 2,
+                id: 5,
                 name: "Anime shirt"
             },
             {
-                id: 3,
+                id: 6,
                 name: "Villians shirt"
             }
 
