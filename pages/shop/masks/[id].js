@@ -1,37 +1,45 @@
-import {server} from '../../../config'
+import { server } from "../../../config";
 
 const Mask = ({ mask }) => {
-  return (
-    <div>
-      {mask.name}
-    </div>
-  )
-}
+  return <div>{mask.name}</div>;
+};
 
 export const getStaticPaths = async () => {
-  const res = await fetch(`${server}/api/masks`)
-  const masks = await res.json()
+  const res = await fetch(`${server}/api/masks`);
+  const masks = await res.json();
 
-
-  const paths = masks.map(mask => {
+  const paths = masks.map((mask) => {
     return {
-      params: { id: mask.id.toString()}
-    }
-  })
+      params: { id: mask.id.toString() },
+    };
+  });
   return {
-    paths, 
-    fallback: false
-  }
-}
+    paths,
+    fallback: false,
+  };
+};
 
 export const getStaticProps = async (context) => {
-  const id = context.params.id
-  const res = await fetch(`${server}/api/masks/${id}`)
-  const mask = await res.json()
+  const id = context.params.id;
+  let mask;
+  try {
+    const res = await fetch(`${server}/api/masks/${id}`, {
+      method: "GET",
+      headers: {
+        // update with your user-agent
+        "User-Agent":
+          "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.89 Safari/537.36",
+        Accept: "application/json; charset=UTF-8",
+      },
+    });
 
-  return {
-    props: { mask:mask}
+    mask = await res.json();
+  } catch (e) {
+    console.log(e);
   }
-}
+  return {
+    props: { mask },
+  };
+};
 
-export default Mask
+export default Mask;
