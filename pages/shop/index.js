@@ -1,5 +1,5 @@
 import Product from "../../components/Card/Card";
-import data from "../../data";
+
 import Link from "next/link";
 import Card from "../../components/Card/Card";
 
@@ -11,7 +11,7 @@ const index = ({ categories }) => {
           Shop
         </div>
       </div>
-      <div className="flex justify-center items-center w-full h-full font-Roboto text-xl">
+      {/* <div className="flex justify-center items-center w-full h-full font-Roboto text-xl">
         <div className="flex flex-row h-fit w-3/4 text-left justify-center items-center gap-2">
           {categories.map((category) => (
             <div key={category.name}>
@@ -20,22 +20,22 @@ const index = ({ categories }) => {
                 url={`/shop/${category.name.toLowerCase()}`}
               />
             </div>
-          ))}
-        </div>
-      </div>
+          ))} */}
+        {/* </div> */}
+      {/* </div> */}
     </div>
   );
 };
 
-export const getStaticProps = async () => {
-  const res = await fetch(`${server}/api/categories`);
-  const categories = await res.json();
+// export const getStaticProps = async () => {
+//   const res = await fetch(`${server}/api/categories`);
+//   const categories = await res.json();
 
-  return {
-    props: {
-      categories,
-    },
-  };
-};
+//   return {
+//     props: {
+//       categories,
+//     },
+//   };
+// };
 
 export default index;
