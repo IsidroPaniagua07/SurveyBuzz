@@ -26,7 +26,7 @@ export const getStaticProps = async (context) => {
       "User-Agent": "*",
     },
   });
-  const mask = JSON.stringify(res);
+  const mask = JSON.stringify(res.data);
 
   return {
     props: { mask: mask },
