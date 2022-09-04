@@ -1,4 +1,4 @@
-import { server } from "../../../config";
+
 import Card from "../../../components/Card/Card";
 
 const index = ({ masks }) => {
@@ -7,7 +7,8 @@ const index = ({ masks }) => {
       {masks.map((mask) => {
         return (
           <div key={mask.name}>
-            <Card name={mask.name} url={`/shop/masks/${mask.id}`} />
+            {mask.name}
+            {/* <Card name={mask.name} url={`/shop/masks/${mask.id}`} /> */}
           </div>
         );
       })}
@@ -15,23 +16,19 @@ const index = ({ masks }) => {
   );
 };
 
-export const getStaticProps = async () => {
-  const { MongoClient, ServerApiVersion } = require('mongodb');
-const uri = "mongodb+srv://isidropaniagua:<password>@cluster0.tab1zab.mongodb.net/?retryWrites=true&w=majority";
-const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
-client.connect(err => {
-  const collection = client.db("test").collection("devices");
-  // perform actions on the collection object
-  client.close();
-});
-  const res = await fetch(`${server}/api/masks`);
-  const masks = await res.json();
+export async function getStaticProps() {
+  const { db } = await connectToDatabase();
+
+  const masks = await db
+    .collection("Products")
+    // .create({ item: "card", qty: 15 })
+    .find({})
+    .toArray();
 
   return {
     props: {
-      masks,
+      movies: JSON.parse(JSON.stringify(movies)),
     },
   };
-};
-
+}
 export default index;

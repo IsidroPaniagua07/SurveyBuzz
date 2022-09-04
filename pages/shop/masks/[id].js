@@ -1,38 +1,38 @@
-import { server } from "../../../config";
+
 const Mask = ({ mask }) => {
-  return <div>{mask.name}</div>;
+  return <div>asd</div>;
 };
 
-export const getStaticPaths = async () => {
-  const res = await fetch(`${server}/api/masks`);
-  const masks = await res.json();
+// export const getStaticPaths = async () => {
+//   const res = await fetch(`${server}/api/masks`);
+//   const masks = await res.json();
 
-  const paths = masks.map((mask) => {
-    return {
-      params: { id: mask.id.toString() },
-    };
-  });
-  return {
-    paths,
-    fallback: false,
-  };
-};
+//   const paths = masks.map((mask) => {
+//     return {
+//       params: { id: mask.id.toString() },
+//     };
+//   });
+//   return {
+//     paths,
+//     fallback: false,
+//   };
+// };
 
-export async function getStaticProps() {
-  const { db } = await connectToDatabase();
+// export async function getStaticProps() {
+//   const { db } = await connectToDatabase();
 
-  const masks = await db
-    .collection("Products")
-    .find({})
+//   const masks = await db
+//     .collection("Products")
+//     .find({})
 
-    .toArray();
+//     .toArray();
 
-  return {
-    props: {
-      movies: JSON.parse(JSON.stringify(movies)),
-    },
-  };
-}
+//   return {
+//     props: {
+//       movies: JSON.parse(JSON.stringify(movies)),
+//     },
+//   };
+// }
 
 // export const getStaticProps = async (context) => {
 //   const id = context.params.id;

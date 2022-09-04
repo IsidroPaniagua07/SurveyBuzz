@@ -1,37 +1,35 @@
-import {server} from '../../../config'
-
 const Shirt = ({ shirt }) => {
   return (
     <div>
-      {shirt.name}
+      asd
     </div>
   )
 }
 
-export const getStaticPaths = async () => {
-  const res = await fetch(`${server}/api/shirts`)
-  const shirts = await res.json()
+// export const getStaticPaths = async () => {
+//   const res = await fetch(`${server}/api/shirts`)
+//   const shirts = await res.json()
 
 
-  const paths = shirts.map(shirt => {
-    return {
-      params: { id: shirt.id.toString()}
-    }
-  })
-  return {
-    paths, 
-    fallback: false
-  }
-}
+//   const paths = shirts.map(shirt => {
+//     return {
+//       params: { id: shirt.id.toString()}
+//     }
+//   })
+//   return {
+//     paths, 
+//     fallback: false
+//   }
+// }
 
-export const getStaticProps = async (context) => {
-  const id = context.params.id
-  const res = await fetch(`${server}/api/shirts/${id}`)
-  const shirt = await res.json()
+// export const getStaticProps = async (context) => {
+//   const id = context.params.id
+//   const res = await fetch(`${server}/api/shirts/${id}`)
+//   const shirt = await res.json()
 
-  return {
-    props: { shirt:shirt}
-  }
-}
+//   return {
+//     props: { shirt:shirt}
+//   }
+// }
 
 export default Shirt
