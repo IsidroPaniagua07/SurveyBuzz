@@ -18,19 +18,35 @@ export const getStaticPaths = async () => {
   };
 };
 
-export const getStaticProps = async (context) => {
-  const id = context.params.id;
-  const res = await fetch(`${server}/api/masks/${id}`, {
-    headers: {
-      Accept: "application/json, text/plain, */*",
-      "User-Agent": "*",
-    },
-  });
-  const mask = JSON.stringify(res.data);
+export async function getStaticProps() {
+  const { db } = await connectToDatabase();
+
+  const masks = await db
+    .collection("Products")
+    .find({})
+
+    .toArray();
 
   return {
-    props: { mask: mask },
+    props: {
+      movies: JSON.parse(JSON.stringify(movies)),
+    },
   };
-};
+}
+
+// export const getStaticProps = async (context) => {
+//   const id = context.params.id;
+//   const res = await fetch(`${server}/api/masks/${id}`, {
+//     headers: {
+//       Accept: "application/json, text/plain, */*",
+//       "User-Agent": "*",
+//     },
+//   });
+//   const mask = JSON.stringify(res.data);
+
+//   return {
+//     props: { mask: mask },
+//   };
+// };
 
 export default Mask;
