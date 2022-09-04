@@ -16,6 +16,14 @@ const index = ({ masks }) => {
 };
 
 export const getStaticProps = async () => {
+  const { MongoClient, ServerApiVersion } = require('mongodb');
+const uri = "mongodb+srv://isidropaniagua:<password>@cluster0.tab1zab.mongodb.net/?retryWrites=true&w=majority";
+const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
+client.connect(err => {
+  const collection = client.db("test").collection("devices");
+  // perform actions on the collection object
+  client.close();
+});
   const res = await fetch(`${server}/api/masks`);
   const masks = await res.json();
 

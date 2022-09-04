@@ -1,37 +1,42 @@
-import {server} from '../../../config'
-
+import { server } from "../../../config";
 const Mask = ({ mask }) => {
-  return (
-    <div>
-      {mask.name}
-    </div>
-  )
-}
+  return <div>{mask.name}</div>;
+};
 
 export const getStaticPaths = async () => {
-  const res = await fetch(`${server}/api/masks`)
-  const masks = await res.json()
+  const res = await fetch(`${server}/api/masks`);
+  const masks = await res.json();
 
-
-  const paths = masks.map(mask => {
+  const paths = masks.map((mask) => {
     return {
-      params: { id: mask.id.toString()}
-    }
-  })
+      params: { id: mask.id.toString() },
+    };
+  });
   return {
-    paths, 
-    fallback: false
-  }
-}
+    paths,
+    fallback: false,
+  };
+};
 
 export const getStaticProps = async (context) => {
-  const id = context.params.id
-  const res = await fetch(`${server}/api/masks/${id}`)
-  const mask = await res.json()
+  let lol
+  const { MongoClient, ServerApiVersion } = require('mongodb');
+  const uri = "mongodb+srv://isidropaniagua:J4Ka8QRFffy87VOJ@cluster0.tab1zab.mongodb.net/?retryWrites=true&w=majority";
+  const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
+  client.connect(err => {
+    const collection = client.db("CaudillsCrafts").collection("Products");
+    if(err)console.log(err)
+    console.log('open')
+
+    client.close();
+  });
+  const id = context.params.id;
+  const res = await fetch(`${server}/api/masks/${id}`);
+  const mask = await res.json();
 
   return {
-    props: { mask:mask}
-  }
-}
+    props: { mask: mask },
+  };
+};
 
-export default Mask
+export default Mask;

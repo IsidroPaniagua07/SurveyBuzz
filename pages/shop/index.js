@@ -5,7 +5,6 @@ import Link from "next/link";
 import Card from "../../components/Card/Card";
 
 const index = ({ categories }) => {
-  console.log(categories);
   return (
     <div className="h-full w-full flex flex-col items-center">
       <div className="w-fit h-1/5 flex items-center justify-center font-RobotoMono font-bold text-7xl">
