@@ -1,6 +1,5 @@
 import Product from "../../components/Card/Card";
 import data from "../../data";
-import { server } from "../../config";
 import Link from "next/link";
 import Card from "../../components/Card/Card";
 
