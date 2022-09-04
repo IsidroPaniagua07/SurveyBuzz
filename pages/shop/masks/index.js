@@ -1,4 +1,4 @@
-
+import connectToDatabase from '../../../utils/mongodb'
 import Card from "../../../components/Card/Card";
 
 const index = ({ masks }) => {
