@@ -1,4 +1,4 @@
-import connectToDatabase from '../../../utils/mongodb'
+import connectToDatabase from "../../../utils/mongodb";
 import Card from "../../../components/Card/Card";
 
 const index = ({ masks }) => {
@@ -27,7 +27,7 @@ export async function getStaticProps() {
 
   return {
     props: {
-      movies: JSON.parse(JSON.stringify(movies)),
+      masks: JSON.parse(JSON.stringify(masks)),
     },
   };
 }
