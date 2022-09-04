@@ -21,7 +21,14 @@ export const getStaticPaths = async () => {
 export const getStaticProps = async (context) => {
 
   const id = context.params.id;
-  const res = await fetch(`${server}/api/masks/${id}`);
+  const res = await fetch(`${server}/api/masks/${id}`,
+  {
+    headers: {
+      Accept: 'application/json, text/plain, */*',
+      'User-Agent': '*',
+    },
+  }
+);
   const mask = await res.json();
 
   return {
