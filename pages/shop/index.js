@@ -13,7 +13,7 @@ const index = ({ categories }) => {
         <div className="flex flex-row h-fit w-3/4 text-left justify-center items-center gap-2">
           {categories.map((category) => (
             <div key={category.name}>
-              <Card name={category.name} url={`/shop/`} />
+              <Card name={category.name} url={`/shop/${category.name}`} />
             </div>
           ))}
         </div>
