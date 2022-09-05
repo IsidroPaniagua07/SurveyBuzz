@@ -1,7 +1,6 @@
-import connectToDatabase from '../../../utils/mongodb'
+import connectToDatabase from "../../../utils/mongodb";
 
 const Mask = ({ mask }) => {
-  
   return <div>{mask.name}</div>;
 };
 
@@ -10,7 +9,7 @@ export const getStaticPaths = async () => {
 
   const masks = await db
     .collection("Products")
-    .find({type:'mask'})
+    .find({ type: "mask" })
     .toArray();
 
   const paths = masks.map((mask) => {
@@ -24,13 +23,11 @@ export const getStaticPaths = async () => {
   };
 };
 
-export async function getStaticProps(context) {
+export async function getServerSideProps(context) {
   const { db } = await connectToDatabase();
-  const id = context.params.id
+  const id = context.params.id;
 
-  const mask = await db
-    .collection("Products")
-    .find({_id:id})
+  const mask = await db.collection("Products").find({ _id: id });
 
   return {
     props: {
@@ -38,7 +35,5 @@ export async function getStaticProps(context) {
     },
   };
 }
-
-
 
 export default Mask;
