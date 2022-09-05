@@ -7,7 +7,7 @@ const index = ({ shirts }) => {
       {shirts.map((shirt) => {
         return (
           <div key={shirt.name}>
-            <Card name={shirt.name} url={`/shop/shirts/${shirt.id}`} />
+            <Card name={shirt.name} url={`/shop/shirts/${shirt._id}`} />
           </div>
         );
       })}
