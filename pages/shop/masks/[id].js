@@ -2,7 +2,7 @@ import connectToDatabase from '../../../utils/mongodb'
 
 const Mask = ({ mask }) => {
 
-  return <div>{mask[0].name}</div>;
+  return <div>{mask.name}</div>;
 };
 
 export const getStaticPaths = async () => {
