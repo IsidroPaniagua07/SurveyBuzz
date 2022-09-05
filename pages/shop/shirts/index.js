@@ -2,27 +2,30 @@ import Card from "../../../components/Card/Card";
 
 const index = ({ shirts }) => {
   return (
-    <div className="flex flex-row gap-2">asd
-      {/* {shirts.map((shirt) => {
+    <div className="flex flex-row gap-2">
+      {shirts.map((shirt) => {
         return (
           <div key={shirt.name}>
             <Card name={shirt.name} url={`/shop/shirts/${shirt.id}`} />
           </div>
         );
-      })} */}
+      })}
     </div>
   );
 };
 
-// export const getStaticProps = async () => {
-//   const res = await fetch(`${server}/api/shirts`);
-//   const shirts = await res.json();
+export async function getStaticProps() {
+  const { db } = await connectToDatabase();
 
-//   return {
-//     props: {
-//       shirts,
-//     },
-//   };
-// };
+  const shirts = await db
+    .collection("Products")
+    .find({ type: "shirt" })
+    .toArray();
 
+  return {
+    props: {
+      shirts: JSON.parse(JSON.stringify(shirts)),
+    },
+  };
+}
 export default index;

@@ -7,8 +7,7 @@ const index = ({ masks }) => {
       {masks.map((mask) => {
         return (
           <div key={mask.name}>
-            {mask.name}
-            {/* <Card name={mask.name} url={`/shop/masks/${mask.id}`} /> */}
+            <Card name={mask.name} url={`/shop/masks/${mask.id}`} />
           </div>
         );
       })}
@@ -30,4 +29,5 @@ export async function getStaticProps() {
     },
   };
 }
+
 export default index;
