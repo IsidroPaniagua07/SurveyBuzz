@@ -1,7 +1,7 @@
 import connectToDatabase from "../../../utils/mongodb";
 
 const Mask = ({ mask }) => {
-  console.log(JSON.stringify(mask));
+  console.log((mask));
   return <div>{mask.name}</div>;
 };
 
@@ -29,7 +29,6 @@ export async function getServerSideProps(context) {
   const id = context.params.id;
 
   const mask = await db.collection("Products").find({ _id: id });
-
   return {
     props: {
       mask: JSON.parse(JSON.stringify(mask)),
