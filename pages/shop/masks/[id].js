@@ -1,27 +1,28 @@
 import connectToDatabase from "../../../utils/mongodb";
 
 const Mask = ({ mask }) => {
+  console.log(JSON.stringify(mask));
   return <div>{mask.name}</div>;
 };
 
-export const getStaticPaths = async () => {
-  const { db } = await connectToDatabase();
+// export const getStaticPaths = async () => {
+//   const { db } = await connectToDatabase();
 
-  const masks = await db
-    .collection("Products")
-    .find({ type: "mask" })
-    .toArray();
+//   const masks = await db
+//     .collection("Products")
+//     .find({ type: "mask" })
+//     .toArray();
 
-  const paths = masks.map((mask) => {
-    return {
-      params: { id: mask._id.toString() },
-    };
-  });
-  return {
-    paths,
-    fallback: false,
-  };
-};
+//   const paths = masks.map((mask) => {
+//     return {
+//       params: { id: mask._id.toString() },
+//     };
+//   });
+//   return {
+//     paths,
+//     fallback: false,
+//   };
+// };
 
 export async function getServerSideProps(context) {
   const { db } = await connectToDatabase();
