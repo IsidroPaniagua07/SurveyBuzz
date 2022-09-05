@@ -8,6 +8,7 @@ const index = ({ masks }) => {
         return (
           <div key={mask.name}>
             <Card name={mask.name} url={`/shop/masks/${mask._id}`} />
+            <p>{mask._id}</p>
           </div>
         );
       })}
