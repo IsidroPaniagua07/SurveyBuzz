@@ -7,7 +7,7 @@ const index = ({ masks }) => {
       {masks.map((mask) => {
         return (
           <div key={mask.name}>
-            <Card name={mask.name} url={`/shop/masks/${mask.id}`} />
+            <Card name={mask.name} url={`/shop/masks/${mask._id}`} />
           </div>
         );
       })}

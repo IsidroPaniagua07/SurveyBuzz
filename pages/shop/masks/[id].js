@@ -1,6 +1,7 @@
 import connectToDatabase from '../../../utils/mongodb'
 
 const Mask = ({ mask }) => {
+  
   return <div>{mask.name}</div>;
 };
 
