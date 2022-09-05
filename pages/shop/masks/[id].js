@@ -2,7 +2,7 @@ import connectToDatabase from '../../../utils/mongodb'
 
 const Mask = ({ mask }) => {
 
-  return <div>{mask.name}</div>;
+  return <div>{mask[0].name}</div>;
 };
 
 export const getStaticPaths = async () => {
@@ -31,6 +31,7 @@ export async function getStaticProps(context) {
   const mask = await db
     .collection("Products")
     .find({_id:id})
+    .toArray()
 
 
   return {
