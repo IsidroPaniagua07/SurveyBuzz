@@ -21,8 +21,7 @@ export async function getStaticProps() {
 
   const masks = await db
     .collection("Products")
-    // .create({ item: "card", qty: 15 })
-    .find({})
+    .find({ type: "mask" })
     .toArray();
 
   return {

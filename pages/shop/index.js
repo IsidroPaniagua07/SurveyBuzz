@@ -26,9 +26,10 @@ export async function getStaticProps() {
   const { db } = await connectToDatabase();
 
   const categories = await db
-    .collection("Products")
-    .find({ type: "mask" })
-    .toArray();
+  .collection("Categories")
+  .find({})
+  .toArray();
+    // .create({ item: "card", qty: 15 })
 
   return {
     props: {
