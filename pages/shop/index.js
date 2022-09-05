@@ -25,14 +25,14 @@ const index = ({ categories }) => {
 export async function getStaticProps() {
   const { db } = await connectToDatabase();
 
-  const masks = await db
+  const categories = await db
     .collection("Products")
     .find({ type: "mask" })
     .toArray();
 
   return {
     props: {
-      masks: JSON.parse(JSON.stringify(masks)),
+      categories: JSON.parse(JSON.stringify(categories)),
     },
   };
 }
