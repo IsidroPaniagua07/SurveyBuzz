@@ -4,14 +4,14 @@ import Image from "next/image";
 export default function Home() {
   return (
     <div className="h-full w-full flex flex-col items-center">
-      <div className="w-full h-1/3 flex items-center justify-start font-RobotoMono font-bold text-5xl">
+      <div className="w-full h-1/2 flex items-center justify-start font-RobotoMono font-bold text-5xl">
         <h1 className="flex h-fit w-fit italic transition-alljustify-center items-center p-2">
           Caudill&apos;s Crafts.
         </h1>
       </div>
-      <div className=" flex justify-center items-center w-full h-1/3 bg-slate-800 text-white text-left font-Roboto text-xl mb-14">
-        <div className="flex flex-col h-fit text-2xl w-fit p-2">
-          <span className="font-bold text-3xl">
+      <div className=" flex pl-40 items-center w-full h-1/3 bg-slate-800 text-white text-left font-Roboto text-xl mb-14">
+        <div className="flex flex-col h-fit text-xl w-fit p-2">
+          <span className="text-3xl">
             Hello!
           </span>
           <span>
