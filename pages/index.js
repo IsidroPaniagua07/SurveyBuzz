@@ -5,7 +5,7 @@ export default function Home() {
   return (
     <div className="h-full w-full flex flex-col items-center">
       <div className="w-full h-1/2 flex items-center justify-start font-RobotoMono font-bold text-5xl">
-        <h1 className="flex h-fit w-fit italic transition-alljustify-center items-center p-2">
+        <h1 className="flex h-fit w-fit italic text-black justify-center items-center p-2">
           Caudill&apos;s Crafts.
         </h1>
       </div>
