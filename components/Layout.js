@@ -4,7 +4,7 @@ const Layout = ({ children }) => {
   return (
     <>
       <Nav />
-      <main className="w-full h-[90%] flex">{children}</main>
+      <main className="w-full h-[93%] flex">{children}</main>
     </>
   );
 };

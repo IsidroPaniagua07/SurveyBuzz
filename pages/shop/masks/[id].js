@@ -30,10 +30,10 @@ export const getStaticPaths = async () => {
 };
 
 export async function getStaticProps(context) {
-  const { db } = await connectToDatabase();
   const id = context.params.id;
+  // const { db } = await connectToDatabase();
+  // const mask = await db.collection("Products").find({ _id: id }).toArray();
 
-  const mask = await db.collection("Products").find({ _id: id }).toArray();
 
   return {
     props: {

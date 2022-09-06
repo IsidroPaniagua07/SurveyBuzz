@@ -1,16 +1,20 @@
 import React from "react";
 import Link from "next/dist/client/link";
-import Image from "next/image";
+
 
 const Nav = () => {
   return (
-    <nav className="flex flex-row w-full h-[10%] px-12 justify-between items-center">
-      <div>
+    <nav className="flex flex-row w-full h-[7%] px-4 justify-between items-center font-RobotoMono">
+      <div className=" flex w-1/3">
         <Link href="/">
           <a>Home</a>
         </Link>
       </div>
-      <div className="flex flex-row gap-10 ">
+      <form onSubmit={()=>{}} className="flex flex-row h-full w-1/3 justify-center items-center">
+        <input className=" flex h-8 w-[20rem] border border-gray-600 rounded rounded-r-none bg-white" />
+        <button className=" flex h-8 w-[4rem] border border-gray-600 border-l-0 bg-yellow-300 rounded rounded-l-none shadow-md justify-center items-center">Search</button>
+      </form>
+      <div className="flex flex-row gap-10 h-full w-1/3 justify-end items-center">
         <Link href="/shop">
           <a>Shop</a>
         </Link>

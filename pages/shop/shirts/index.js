@@ -1,4 +1,5 @@
-import connectToDatabase from "../../../utils/mongodb";
+// import connectToDatabase from "../../../utils/mongodb";
+import { productData } from "../../../data";
 import Card from "../../../components/Card/Card";
 
 const index = ({ shirts }) => {
@@ -18,15 +19,28 @@ const index = ({ shirts }) => {
 export async function getStaticProps() {
   const { db } = await connectToDatabase();
 
-  const shirts = await db
-    .collection("Products")
-    .find({ type: "shirt" })
-    .toArray();
+  const shirts = []
+
 
   return {
     props: {
-      shirts: JSON.parse(JSON.stringify(shirts)),
+      shirts: shirts,
     },
   };
 }
+// export async function getStaticProps() {
+//   const { db } = await connectToDatabase();
+
+//   const shirts = await db
+//     .collection("Products")
+//     .find({ type: "shirt" })
+//     .toArray();
+
+//   return {
+//     props: {
+//       shirts: JSON.parse(JSON.stringify(shirts)),
+//     },
+//   };
+// }
+
 export default index;

@@ -2,9 +2,9 @@ import Link from "next/link";
 import Image from "next/image";
 import masksImage from "../../public/images/masks-sample-450x450.jpg";
 
-const Card = ({ name, url }) => {
+const Card = ({ name, url, description }) => {
   return (
-    <div className="max-w-sm rounded overflow-hidden shadow-lg">
+    <div className="card">
       <Link href={url}>
         <a>
           <Image
@@ -12,11 +12,11 @@ const Card = ({ name, url }) => {
             height={450}
             width={450}
             alt={name}
-            className="rounded shadow"
+            className="card-image"
           />
           <div className="px-6 py-4">
             <div className="font-bold text-xl mb-2">{name}</div>
-            <p className="text-gray-700 text-base">Description</p>
+            {description?<p className="text-gray-700 text-base">{description}</p>:null}
           </div>
         </a>
       </Link>
