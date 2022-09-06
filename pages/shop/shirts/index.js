@@ -4,22 +4,22 @@ import Card from "../../../components/Card/Card";
 
 const index = ({ shirts }) => {
   return (
-    <div className="flex flex-row gap-2">
-      {shirts.map((shirt) => {
+    <div className="flex flex-row gap-2">asd
+      {/* {shirts.map((shirt) => {
         return (
           <div key={shirt.name}>
             <Card name={shirt.name} url={`/shop/shirts/${shirt._id}`} />
           </div>
         );
-      })}
+      })} */}
     </div>
   );
 };
 
 export async function getStaticProps() {
-  const { db } = await connectToDatabase();
+  // const { db } = await connectToDatabase();
 
-  const shirts = []
+  const shirts = productData.shirts
 
 
   return {
