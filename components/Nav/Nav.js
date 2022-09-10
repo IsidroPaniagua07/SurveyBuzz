@@ -12,7 +12,7 @@ const Nav = () => {
       </div>
       <form onSubmit={()=>{}} className="flex flex-row h-full w-1/3 justify-center items-center">
         <input className=" flex h-8 w-[20rem] border border-gray-600 rounded rounded-r-none bg-white" />
-        <button className=" flex h-8 w-[4rem] border border-gray-600 border-l-0 bg-slate-600 text-white rounded rounded-l-none shadow-md justify-center items-center">Search</button>
+        <button className=" flex h-8 w-[4rem] border border-gray-600 border-l-0 bg-slate-800 text-white rounded rounded-l-none shadow-md justify-center items-center">Search</button>
       </form>
       <div className="flex flex-row gap-10 h-full w-1/3 justify-end items-center">
         <Link href="/shop">
