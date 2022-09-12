@@ -2,15 +2,16 @@ import Link from "next/link";
 import Image from "next/image";
 import masksImage from "../../public/images/masks-sample-450x450.jpg";
 
-const Card = ({ name, url, description }) => {
+const Card = ({ name, url, description, size }) => {
+
   return (
     <div className="card">
       <Link href={url}>
         <a>
           <Image
             src={masksImage}
-            height={450}
-            width={450}
+            height={size==="sm"?200:450}
+            width={size==="sm"?200:450}
             alt={name}
             className="card-image"
           />
