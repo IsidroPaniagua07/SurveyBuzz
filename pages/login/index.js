@@ -12,9 +12,7 @@ const index = () => {
       formData.append("file", file);
     }
     formData.append("upload_preset", "uploads");
-    for (const value of formData.values()) {
-      console.log(value);
-    }
+
     const data = await fetch(
       "https://api.cloudinary.com/v1_1/caudillscrafts/image/upload",
       {
@@ -27,9 +25,9 @@ const index = () => {
       "https://caudills-crafts.vercel.app/api/Upload",
       {
         method: "POST",
-        body: {
-          'url' : data.url 
-        },
+        body: JSON.stringify({
+          'image' : data.url
+        }),
       }
     ).then((r) => r.json());
     console.log(res);
