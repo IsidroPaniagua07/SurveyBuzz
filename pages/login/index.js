@@ -19,8 +19,10 @@ const index = () => {
         body: formData,
       }
     ).then((r) => r.json());
-    console.log(data.url)
-    let res = await fetch('https://caudills-crafts.vercel.app/api/Upload/Upload').then(r=>r.json())
+    console.log(data.url);
+    let res = await fetch(
+      "https://caudills-crafts.vercel.app/api/Upload/Upload"
+    ).then((r) => console.log(r.json()));
   };
   return (
     <>
