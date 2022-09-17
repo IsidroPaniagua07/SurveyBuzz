@@ -20,7 +20,7 @@ const index = () => {
       }
     ).then((r) => r.json());
     console.log(data.url)
-    let res = await fetch('http://localhost:3000/api/Upload/Upload').then(r=>r.json())
+    let res = await fetch('https://caudills-crafts.vercel.app/api/Upload/Upload').then(r=>r.json())
   };
   return (
     <>
