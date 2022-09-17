@@ -12,7 +12,7 @@ export default async function handler(req, res) {
   // case "POST":
   // let bodyObject = JSON.parse(req.body);
   // let myPost = await db.collection("posts").insertOne(bodyObject);
-  res.json({ status: 200, data: req.body });
+  res.json({ status: 200, data: JSON.stringify(req.body) });
   // break;
   // case "GET":
   //   const allPosts = await db.collection("allPosts").find({}).toArray();
