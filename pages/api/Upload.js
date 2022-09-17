@@ -1,7 +1,7 @@
 import clientPromise from "../../lib/mongodb";
 
 export default async function handler(req, res) {
-  const {image} = req.body
+  const image = req.body.image
   const client = await clientPromise;
   const db = client.db("CaudillsCrafts")
   switch (req.method) {
@@ -10,7 +10,7 @@ export default async function handler(req, res) {
     .collection("Products")
     .find({ type: "shirt" })
     .toArray();
-    res.json({ status: 200, data: image, array:shirts });
+    res.json({ status: 200, image: image, shirts:shirts });
     // .create({ item: "test", qty: 15, image: image })
     break;
   // let bodyObject = JSON.parse(req.body);
