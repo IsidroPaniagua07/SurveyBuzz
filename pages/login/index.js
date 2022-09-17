@@ -12,7 +12,7 @@ const index = () => {
       formData.append("file", file);
     }
     formData.append("upload_preset", "uploads");
-    console.log(formData)
+    console.log(formData.values())
     const data = await fetch(
       "https://api.cloudinary.com/v1_1/caudillscrafts/image/upload",
       {
