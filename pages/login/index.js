@@ -23,14 +23,31 @@ const index = () => {
     let res = await fetch(
       "https://caudills-crafts.vercel.app/api/Upload/Upload"
     ).then((r) => r.json());
-    console.log(res)
+    console.log(res);
   };
   return (
     <>
-      <form onSubmit={uploadImage}>
-        <label htmlFor="myfile">Select a file:</label>
-        <input type="file" id="file" name="file" />
-        <button type="submit">Submit</button>
+      <form onSubmit={uploadImage} className="flex flex-col">
+
+        <div className="flex gap-2">
+          <label>Name:</label>
+          <input className="border border-black"/>
+        </div>
+        <div className="flex gap-2">
+          <label>Description:</label>
+          <input className="border border-black"/>
+        </div>
+        <div className="flex gap-2">
+          <label>Price:</label>
+          <input className="border border-black"/>
+        </div>
+        <div className="flex gap-2">
+          <label htmlFor="myfile">Upload a photo:</label>
+          <input type="file" id="file" name="file" />
+        </div>
+        <button type="submit" className="border border-black w-fit">
+          Submit
+        </button>
       </form>
     </>
   );
