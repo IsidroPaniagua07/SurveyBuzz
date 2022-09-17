@@ -26,7 +26,7 @@ const index = () => {
       {
         method: "POST",
         body: JSON.stringify({
-          'image' : data.url
+          image : data.url
         }),
       }
     ).then((r) => r.json());
