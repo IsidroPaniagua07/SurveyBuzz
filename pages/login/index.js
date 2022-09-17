@@ -22,8 +22,8 @@ const index = () => {
     ).then((r) => r.json());
     console.log(data.url);
     let res = await fetch(
-      "http://localhost:3000/api/Upload",
-      // "https://caudills-crafts.vercel.app/api/Upload",
+      // "http://localhost:3000/api/Upload",
+      "https://caudills-crafts.vercel.app/api/Upload",
       {
         method: "POST",
         body: JSON.stringify({
