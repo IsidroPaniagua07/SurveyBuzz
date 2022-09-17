@@ -24,7 +24,13 @@ const index = () => {
     ).then((r) => r.json());
     console.log(data.url);
     let res = await fetch(
-      "https://caudills-crafts.vercel.app/api/Upload"
+      "https://caudills-crafts.vercel.app/api/Upload",
+      {
+        method: "POST",
+        body: {
+          'url' : data.url 
+        },
+      }
     ).then((r) => r.json());
     console.log(res);
   };
