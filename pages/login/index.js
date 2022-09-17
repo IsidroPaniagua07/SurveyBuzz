@@ -21,7 +21,7 @@ const index = () => {
     ).then((r) => r.json());
     console.log(data.url);
     let res = await fetch(
-      "https://caudills-crafts.vercel.app/api/Upload/Upload"
+      "https://caudills-crafts.vercel.app/api/Upload"
     ).then((r) => r.json());
     console.log(res);
   };
