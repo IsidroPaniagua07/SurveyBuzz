@@ -26,22 +26,22 @@ const index = () => {
     console.log(res);
   };
   return (
-    <>
-      <form onSubmit={uploadImage} className="flex flex-col">
+    <div className="flex h-full w-full  justify-center items-center">
+      <form onSubmit={uploadImage} className="flex w-fit h-fit flex-col gap-4">
 
-        <div className="flex gap-2">
+        <div className="flex justify-between">
           <label>Name:</label>
           <input className="border border-black"/>
         </div>
-        <div className="flex gap-2">
+        <div className="flex justify-between">
           <label>Description:</label>
           <input className="border border-black"/>
         </div>
-        <div className="flex gap-2">
+        <div className="flex justify-between">
           <label>Price:</label>
           <input className="border border-black"/>
         </div>
-        <div className="flex gap-2">
+        <div className="flex flex-col justify-between ">
           <label htmlFor="myfile">Upload a photo:</label>
           <input type="file" id="file" name="file" />
         </div>
@@ -49,7 +49,7 @@ const index = () => {
           Submit
         </button>
       </form>
-    </>
+    </div>
   );
 };
 
