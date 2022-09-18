@@ -1,6 +1,12 @@
+import { useEffect, useState } from "react";
+
 const index = () => {
-  let server
-  !process.env.NODE_ENV || process.env.NODE_ENV === 'development'? server="http://localhost:3000": server='https://caudills-crafts.vercel.app'
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const [data, setData] = useState({});
+  let server;
+  !process.env.NODE_ENV || process.env.NODE_ENV === "development"
+    ? (server = "http://localhost:3000")
+    : (server = "https://caudills-crafts.vercel.app");
   const uploadImage = async (e) => {
     e.preventDefault();
 
@@ -24,35 +30,48 @@ const index = () => {
     ).then((r) => r.json());
     console.log(data.url);
     let res = await fetch(
-      
-        // development build code
+      // development build code
 
-      
       `${server}/api/Upload`,
       {
         method: "POST",
         body: JSON.stringify({
-          image : data.url
+          image: data.url,
         }),
       }
     ).then((r) => r.json());
     console.log(res);
   };
+
+  const handleOnChange = (e) => {
+    const {id, value} = e.target
+    setData({ ...data, [id]: value});
+  };
+
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  useEffect(() => {
+    console.log(data);
+  }, [data]);
   return (
     <div className="flex h-full w-full  justify-center items-center">
       <form onSubmit={uploadImage} className="flex w-fit h-fit flex-col gap-4">
-
         <div className="flex justify-between">
           <label>Name:</label>
-          <input className="border border-black"/>
+          <input id='name'
+            onChange={(e) => handleOnChange(e)}
+            className="border border-black"
+          />
         </div>
         <div className="flex justify-between">
           <label>Description:</label>
-          <input className="border border-black"/>
+          <input id='description'
+            onChange={(e) => handleOnChange(e)} className="border border-black" />
         </div>
         <div className="flex justify-between">
           <label>Price:</label>
-          <input className="border border-black"/>
+          <input id='price'
+            onChange={(e) => handleOnChange(e)}
+            className="border border-black" />
         </div>
         <div className="flex flex-col justify-between ">
           <label htmlFor="myfile">Upload a photo:</label>
