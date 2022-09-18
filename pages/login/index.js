@@ -1,4 +1,6 @@
 const index = () => {
+  let server
+  !process.env.NODE_ENV || process.env.NODE_ENV === 'development'? server="http://localhost:3000": server='https://caudills-crafts.vercel.app'
   const uploadImage = async (e) => {
     e.preventDefault();
 
@@ -22,8 +24,11 @@ const index = () => {
     ).then((r) => r.json());
     console.log(data.url);
     let res = await fetch(
-      // "http://localhost:3000/api/Upload",
-      "https://caudills-crafts.vercel.app/api/Upload",
+      
+        // development build code
+
+      
+      `${server}/api/Upload`,
       {
         method: "POST",
         body: JSON.stringify({

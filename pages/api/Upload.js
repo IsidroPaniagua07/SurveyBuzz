@@ -9,10 +9,10 @@ export default async function handler(req, res) {
   case "POST":
   const shirts = await db
     .collection("Products")
-    .create({ item: "test", qty: 15, image: image })
-    // .find({ type: "shirt" })
-    // .toArray();
-    res.json({ status: 200, image: image });
+    // .create({ item: "test", qty: 15, image: image })
+    .find({ type: "shirt" })
+    .toArray();
+    res.json({ status: 200, image: shirts });
     break;
   // let bodyObject = JSON.parse(req.body);
   // let myPost = await db.collection("posts").insertOne(bodyObject);
