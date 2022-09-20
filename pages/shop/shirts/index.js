@@ -4,7 +4,8 @@ import Card from "../../../components/Card/Card";
 
 const index = ({ shirts }) => {
   return (
-    <div className="flex flex-row gap-2">asd
+    <div className="flex flex-row gap-2">
+      asd
       {shirts.map((shirt) => {
         return (
           <div key={shirt.name}>
@@ -17,10 +18,9 @@ const index = ({ shirts }) => {
 };
 
 // export async function getStaticProps() {
-  // const { db } = await connectToDatabase();
+// const { db } = await connectToDatabase();
 
 //   const shirts = productData.shirts
-
 
 //   return {
 //     props: {
@@ -40,6 +40,7 @@ export async function getStaticProps() {
     props: {
       shirts: JSON.parse(JSON.stringify(shirts)),
     },
+    revalidate: 600,
   };
 }
 
