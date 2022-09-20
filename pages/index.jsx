@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import Head from "next/head";
 import Image from "next/image";
 import Card from "../components/Card/Card";
-import Script from "next/script";
 
 export default function Home() {
   if (typeof window !== "undefined") {
@@ -21,8 +20,8 @@ export default function Home() {
   return (
     <>
       <div className="h-full w-full flex flex-col items-center">
-        <div className="w-full h-1/2 flex items-center justify-between font-RobotoMono font-bold text-5xl">
-          <h1 className="flex h-fit w-1/2 italic text-black justify-start items-center m-2">
+        <div className="w-full h-1/2 flex items-center justify-between px-2 font-RobotoMono font-bold text-5xl">
+          <h1 className="flex h-fit w-1/2 italic text-black justify-start items-center ">
             Caudill&apos;s Crafts.
           </h1>
           <div className="slider ">

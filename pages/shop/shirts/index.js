@@ -5,11 +5,11 @@ import Card from "../../../components/Card/Card";
 const index = ({ shirts }) => {
   return (
     <div className="flex flex-row gap-2">
-      asd
       {shirts.map((shirt) => {
+        console.log(shirt)
         return (
           <div key={shirt.name}>
-            <Card name={shirt.name} url={`/shop/shirts/${shirt._id}`} />
+            <Card name={shirt.name} url={`/shop/shirts/${shirt._id}`} image={null} />
           </div>
         );
       })}
@@ -17,31 +17,29 @@ const index = ({ shirts }) => {
   );
 };
 
-// export async function getStaticProps() {
-// const { db } = await connectToDatabase();
 
-//   const shirts = productData.shirts
 
-//   return {
-//     props: {
-//       shirts: shirts,
-//     },
-//   };
-// }
 export async function getStaticProps() {
-  const { db } = await connectToDatabase();
+  if (!process.env.NODE_ENV || process.env.NODE_ENV === "development") {
 
-  const shirts = await db
-    .collection("Products")
-    .find({ type: "shirt" })
-    .toArray();
+  const shirts = productData.shirts
 
   return {
     props: {
-      shirts: JSON.parse(JSON.stringify(shirts)),
+      shirts: shirts,
     },
-    revalidate: 600,
   };
+}else {
+  const { db } = await connectToDatabase();
+
+  const shirts = productData.shirts
+
+  return {
+    props: {
+      shirts: shirts,
+    },
+  };
+}
 }
 
 export default index;

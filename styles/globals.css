@@ -33,7 +33,7 @@
     display: flex;
     border-radius: 10px;
     /* overflow: scroll; */
-    overflow: hid;
+
   }
   .slides {
     /* width:500%; */
