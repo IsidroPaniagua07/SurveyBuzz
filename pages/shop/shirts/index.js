@@ -1,4 +1,4 @@
-// import connectToDatabase from "../../../utils/mongodb";
+import connectToDatabase from "../../../utils/mongodb";
 import { productData } from "../../../data";
 import Card from "../../../components/Card/Card";
 
