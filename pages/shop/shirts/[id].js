@@ -51,8 +51,11 @@ export const getStaticProps = async (context) => {
     };
   } else {
     const id = context.params.id;
-    const res = await fetch(`${server}/api/shirts/${id}`);
-    const shirt = await res.json();
+    const { db } = await connectToDatabase();
+    const shirt = await db
+      .collection("Products")
+      .find({ _id:id})
+
 
     return {
       props: { shirt: shirt },

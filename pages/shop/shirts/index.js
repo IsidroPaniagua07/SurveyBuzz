@@ -31,8 +31,9 @@ export async function getStaticProps() {
   };
 }else {
   const { db } = await connectToDatabase();
-
-  const shirts = productData.shirts
+  const shirts = await db
+    .collection("Products")
+    .find({ type: 'shirt' })
 
   return {
     props: {
