@@ -1,13 +1,10 @@
 import { productData } from "../../../data";
-import Card from "../../../components/Card/Card"
+import Card from "../../../components/Card/Card";
 import ProductPage from "../../../components/ProductPage/ProductPage";
 
 const Shirt = ({ shirt }) => {
   console.log(shirt);
-  return (
-    <ProductPage name={shirt.name} image={null}/>
-
-  )
+  return <ProductPage name={shirt.name} image={null} />;
 };
 
 export const getStaticPaths = async () => {
@@ -23,7 +20,7 @@ export const getStaticPaths = async () => {
       fallback: false,
     };
   } else {
-    const res = await fetch(`caudills-crafts.vercel.app/api/shirts`);
+    const res = await fetch(`https://caudills-crafts.vercel.app/api/shirts`);
     const shirts = await res.json();
 
     const paths = shirts.map((shirt) => {
