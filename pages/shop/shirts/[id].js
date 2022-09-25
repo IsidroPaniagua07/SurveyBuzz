@@ -52,10 +52,11 @@ export const getStaticProps = async (context) => {
     };
   } else {
     const id = context.params.id;
+    console.log('THIS IS THE ID: ' + id)
     const { db } = await connectToDatabase();
     const shirt = await db
       .collection("Products")
-      .find({ "_id": ObjectId(id) });
+      .find({ _id: ObjectId(id) });
 
     return {
       props: { shirt: JSON.parse(JSON.stringify(shirt)) },
