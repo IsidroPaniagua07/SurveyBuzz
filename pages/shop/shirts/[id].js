@@ -4,7 +4,7 @@ import ProductPage from "../../../components/ProductPage/ProductPage";
 import connectToDatabase from "../../../utils/mongodb";
 
 const Shirt = ({ shirt }) => {
-  console.log(shirt);
+  const  ObjectID = require('mongodb').ObjectId;
   return <ProductPage name={shirt.name} image={null} />;
 };
 
