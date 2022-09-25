@@ -23,9 +23,13 @@ export const getStaticPaths = async () => {
     return {
       paths: [
         {
-          params: { id: "63267f9203e67d82541c1ce5" },
-          params: { id: "2" },
-          params: { id: "3" },
+          params: { id: "1" }
+        },
+        {
+          params: { id: "2" }
+        },
+        {
+          params: { id: "63267f9203e67d82541c1ce5" }
         },
       ],
       fallback: false,
