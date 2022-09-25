@@ -6,7 +6,7 @@ import { ObjectId } from "mongodb";
 
 const Shirt = ({ shirt }) => {
   console.log(shirt)
-  return <ProductPage name={shirt.name} image={null} />;
+  return <ProductPage name={shirt.name} image={shirt.image} />;
 };
 
 export const getStaticPaths = async () => {
@@ -52,8 +52,6 @@ export const getStaticProps = async (context) => {
     };
   } else {
     const id = context.params.id;
-    console.log('THIS IS THE ID: ' + id)
-    console.log(typeof(id))
     const { db } = await connectToDatabase();
     const shirt = await db
       .collection("Products")
