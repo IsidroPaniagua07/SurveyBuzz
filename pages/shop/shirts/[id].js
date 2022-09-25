@@ -36,7 +36,7 @@ export const getStaticPaths = async () => {
     const paths = {
       params: { id: 1 },
       };
-    };
+    
     
     return {
       paths,
@@ -57,7 +57,7 @@ export const getStaticPaths = async () => {
     //   fallback: false,
     };
   }
-// };
+};
 export const getStaticProps = async (context) => {
   if (!process.env.NODE_ENV || process.env.NODE_ENV === "development") {
     const id = context.params.id;
