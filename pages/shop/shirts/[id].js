@@ -1,6 +1,7 @@
 import { productData } from "../../../data";
 import Card from "../../../components/Card/Card";
 import ProductPage from "../../../components/ProductPage/ProductPage";
+import connectToDatabase from "../../../utils/mongodb";
 
 const Shirt = ({ shirt }) => {
   console.log(shirt);
@@ -20,8 +21,11 @@ export const getStaticPaths = async () => {
       fallback: false,
     };
   } else {
-    const res = await fetch(`https://caudills-crafts.vercel.app/api/shirts`);
-    const shirts = await res.json();
+    const { db } = await connectToDatabase();
+    const shirts = await db
+      .collection("Products")
+      .find({ type: "shirts" })
+      .toArray();
 
     const paths = shirts.map((shirt) => {
       return {
