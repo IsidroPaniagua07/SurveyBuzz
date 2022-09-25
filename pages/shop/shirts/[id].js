@@ -1,5 +1,5 @@
 import { productData } from "../../../data";
-import Card from "../../../components/Card/Card";
+import Card from "../../../components/Card/Card"
 import ProductPage from "../../../components/ProductPage/ProductPage";
 
 const Shirt = ({ shirt }) => {
@@ -23,7 +23,7 @@ export const getStaticPaths = async () => {
       fallback: false,
     };
   } else {
-    const res = await fetch(`${server}/api/shirts`);
+    const res = await fetch(`caudills-crafts.vercel.app/api/shirts`);
     const shirts = await res.json();
 
     const paths = shirts.map((shirt) => {
