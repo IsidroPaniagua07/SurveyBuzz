@@ -23,7 +23,7 @@ export const getStaticPaths = async () => {
       const { db } = await connectToDatabase();
       const shirts = await db
         .collection("Products")
-        .find({ type: "shirts" })
+        .find({ type: "shirt" })
         .toArray();
 
       const paths = shirts.map((shirt) => {
