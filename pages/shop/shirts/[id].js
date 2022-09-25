@@ -28,7 +28,7 @@ export const getStaticPaths = async () => {
 
       const paths = shirts.map((shirt) => {
         return {
-          params: { id: shirt._id },
+          params: { id: shirt._id.toString() },
         };
       });
       return {
