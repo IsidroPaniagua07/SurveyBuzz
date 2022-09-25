@@ -5,7 +5,6 @@ import connectToDatabase from "../../../utils/mongodb";
 import { ObjectId } from "mongodb";
 
 const Shirt = ({ shirt }) => {
-
   return <ProductPage name={shirt.name} image={null} />;
 };
 
@@ -22,34 +21,29 @@ export const getStaticPaths = async () => {
       fallback: false,
     };
   } else {
-
-
-
-    
-    
     return {
       paths: [
         {
-          params: { id: '1' },
-          params: { id: '2' },
-          params: { id: '3' },
-        }
+          params: { id: "63267f9203e67d82541c1ce5" },
+          params: { id: "2" },
+          params: { id: "3" },
+        },
       ],
       fallback: false,
-    // const { db } = await connectToDatabase();
-    // const shirts = await db
-    //   .collection("Products")
-    //   .find({ type: "shirts" })
-    //   .toArray();
+      // const { db } = await connectToDatabase();
+      // const shirts = await db
+      //   .collection("Products")
+      //   .find({ type: "shirts" })
+      //   .toArray();
 
-    // const paths = shirts.map((shirt) => {
-    //   return {
-    //     params: { id: shirt._id.toString() },
-    //   };
-    // });
-    // return {
-    //   paths,
-    //   fallback: false,
+      // const paths = shirts.map((shirt) => {
+      //   return {
+      //     params: { id: shirt._id.toString() },
+      //   };
+      // });
+      // return {
+      //   paths,
+      //   fallback: false,
     };
   }
 };
@@ -69,8 +63,7 @@ export const getStaticProps = async (context) => {
     const { db } = await connectToDatabase();
     const shirt = await db
       .collection("Products")
-      .find({_id: ObjectId('63267f9203e67d82541c1ce5')})
-
+      .find({ _id: ObjectId("63267f9203e67d82541c1ce5") });
 
     return {
       props: { shirt: JSON.parse(JSON.stringify(shirt)) },
