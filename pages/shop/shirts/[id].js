@@ -21,20 +21,35 @@ export const getStaticPaths = async () => {
       fallback: false,
     };
   } else {
-    const { db } = await connectToDatabase();
-    const shirts = await db
-      .collection("Products")
-      .find({ type: "shirts" })
-      .toArray();
+    // const { db } = await connectToDatabase();
+    // const shirts = await db
+    //   .collection("Products")
+    //   .find({ type: "shirts" })
+    //   .toArray();
 
-    const paths = shirts.map((shirt) => {
-      return {
-        params: { id: shirt._id.toString() },
-      };
-    });
+    // const paths = shirts.map((shirt) => {
+    //   return {
+    //     params: { id: shirt._id.toString() },
+    //   };
+    // });
+    
     return {
-      paths,
+      paths :{parmas: {id: 1}},
       fallback: false,
+    // const { db } = await connectToDatabase();
+    // const shirts = await db
+    //   .collection("Products")
+    //   .find({ type: "shirts" })
+    //   .toArray();
+
+    // const paths = shirts.map((shirt) => {
+    //   return {
+    //     params: { id: shirt._id.toString() },
+    //   };
+    // });
+    // return {
+    //   paths,
+    //   fallback: false,
     };
   }
 };
@@ -54,7 +69,7 @@ export const getStaticProps = async (context) => {
     const { db } = await connectToDatabase();
     const shirt = await db
       .collection("Products")
-      .find({_id:id.toString()})
+      .find({_id:'63267f9203e67d82541c1ce5'})
 
 
     return {
