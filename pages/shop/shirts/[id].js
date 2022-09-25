@@ -21,17 +21,7 @@ export const getStaticPaths = async () => {
       fallback: false,
     };
   } else {
-    // const { db } = await connectToDatabase();
-    // const shirts = await db
-    //   .collection("Products")
-    //   .find({ type: "shirts" })
-    //   .toArray();
 
-    // const paths = shirts.map((shirt) => {
-    //   return {
-    //     params: { id: shirt._id.toString() },
-    //   };
-    // });
 
 
     
@@ -39,9 +29,9 @@ export const getStaticPaths = async () => {
     return {
       paths: [
         {
-          params: { id: 1 },
-          params: { id: 2 },
-          params: { id: 3 },
+          params: { id: '1' },
+          params: { id: '2' },
+          params: { id: '3' },
         }
       ],
       fallback: false,
