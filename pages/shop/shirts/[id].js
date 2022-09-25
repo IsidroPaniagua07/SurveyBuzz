@@ -57,7 +57,7 @@ export const getStaticProps = async (context) => {
       .find({ _id: id.toString() });
 
     return {
-      props: { shirt: shirt },
+      props: { shirt: JSON.parse(JSON.stringify(shirt)) },
     };
   }
 };
