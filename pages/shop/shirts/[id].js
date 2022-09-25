@@ -32,9 +32,15 @@ export const getStaticPaths = async () => {
     //     params: { id: shirt._id.toString() },
     //   };
     // });
+
+    const paths = () =>{
+      return {
+        params: { id: 1 },
+      };
+    };
     
     return {
-      paths :{parmas: {id: 1}},
+      paths,
       fallback: false,
     // const { db } = await connectToDatabase();
     // const shirts = await db
