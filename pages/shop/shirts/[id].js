@@ -33,13 +33,17 @@ export const getStaticPaths = async () => {
     //   };
     // });
 
-    const paths = {
-      params: { id: 1 },
-      };
+
     
     
     return {
-      paths,
+      paths: [
+        {
+          params: { id: 1 },
+          params: { id: 2 },
+          params: { id: 3 },
+        }
+      ],
       fallback: false,
     // const { db } = await connectToDatabase();
     // const shirts = await db
