@@ -34,6 +34,7 @@ export async function getStaticProps() {
   const shirts = await db
     .collection("Products")
     .find({ type: 'shirt' })
+    .toArray()
 
   return {
     props: {
