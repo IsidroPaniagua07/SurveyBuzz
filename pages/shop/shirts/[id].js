@@ -2,6 +2,7 @@ import { productData } from "../../../data";
 import Card from "../../../components/Card/Card";
 import ProductPage from "../../../components/ProductPage/ProductPage";
 import connectToDatabase from "../../../utils/mongodb";
+import { ObjectId } from "mongodb";
 
 const Shirt = ({ shirt }) => {
   console.log(shirt)
@@ -56,9 +57,9 @@ export const getStaticProps = async (context) => {
     const { db } = await connectToDatabase();
     const shirt = await db
       .collection("Products")
-      .find({ _id: id })
+      // .find({ _id: id })
+      .find({ _id: ObjectId(id) })
       .toArray()
-      // .find({ _id: ObjectId(id) });
       
     return {
       props: { shirt: JSON.parse(JSON.stringify(shirt[0])) },
