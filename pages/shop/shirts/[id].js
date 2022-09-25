@@ -2,9 +2,10 @@ import { productData } from "../../../data";
 import Card from "../../../components/Card/Card";
 import ProductPage from "../../../components/ProductPage/ProductPage";
 import connectToDatabase from "../../../utils/mongodb";
+import { ObjectId } from "mongodb";
 
 const Shirt = ({ shirt }) => {
-  const  ObjectID = require('mongodb').ObjectId;
+
   return <ProductPage name={shirt.name} image={null} />;
 };
 
