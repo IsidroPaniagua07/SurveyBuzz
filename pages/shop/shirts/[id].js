@@ -4,6 +4,7 @@ import ProductPage from "../../../components/ProductPage/ProductPage";
 import connectToDatabase from "../../../utils/mongodb";
 
 const Shirt = ({ shirt }) => {
+  console.log(shirt)
   return <ProductPage name={shirt.name} image={null} />;
 };
 
@@ -53,7 +54,7 @@ export const getStaticProps = async (context) => {
     const { db } = await connectToDatabase();
     const shirt = await db
       .collection("Products")
-      .find({ _id: id });
+      .find({ _id: id.toString() });
 
     return {
       props: { shirt: JSON.parse(JSON.stringify(shirt)) },
