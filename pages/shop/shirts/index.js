@@ -38,7 +38,7 @@ export async function getStaticProps() {
 
   return {
     props: {
-      shirts: shirts,
+      shirts: JSON.parse(JSON.stringify(shirts)),
     },
   };
 }
