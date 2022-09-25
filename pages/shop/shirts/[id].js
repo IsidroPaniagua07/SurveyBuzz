@@ -55,7 +55,7 @@ export const getStaticProps = async (context) => {
     const { db } = await connectToDatabase();
     const shirt = await db
       .collection("Products")
-      .find({ _id: ObjectId(id.toString()) });
+      .find({ _id: ObjectId(id) });
 
     return {
       props: { shirt: JSON.parse(JSON.stringify(shirt)) },
