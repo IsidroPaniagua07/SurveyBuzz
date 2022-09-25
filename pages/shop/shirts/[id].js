@@ -56,7 +56,7 @@ export const getStaticProps = async (context) => {
     const { db } = await connectToDatabase();
     const shirt = await db
       .collection("Products")
-      .find({ name: 'Mickey Mouse Mask'})
+      .find({ _id: id })
       .toArray()
       // .find({ _id: ObjectId(id) });
       
