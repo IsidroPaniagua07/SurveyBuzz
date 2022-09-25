@@ -2,7 +2,6 @@ import { productData } from "../../../data";
 import Card from "../../../components/Card/Card";
 import ProductPage from "../../../components/ProductPage/ProductPage";
 import connectToDatabase from "../../../utils/mongodb";
-import { ObjectId } from "mongodb";
 
 const Shirt = ({ shirt }) => {
   console.log(shirt)
@@ -53,6 +52,7 @@ export const getStaticProps = async (context) => {
   } else {
     const id = context.params.id;
     console.log('THIS IS THE ID: ' + id)
+    console.log(typeof(id))
     const { db } = await connectToDatabase();
     const shirt = await db
       .collection("Products")
