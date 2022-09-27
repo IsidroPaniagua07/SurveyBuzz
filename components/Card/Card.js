@@ -4,7 +4,7 @@ import masksImage from "../../public/images/masks-sample-450x450.jpg";
 
 const Card = ({ name, url, description, size, image }) => {
   return (
-    <div className="card">
+    <div className="card relative">
       <Link href={url.toLowerCase()}>
         <a>
           <Image

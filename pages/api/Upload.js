@@ -1,7 +1,7 @@
 import clientPromise from "../../lib/mongodb";
 
 export default async function handler(req, res) {
-  const { image } = JSON.parse(req.body);
+  const { name, description, category, price, image } = JSON.parse(req.body);
 
   const client = await clientPromise;
   const db = client.db("CaudillsCrafts");
@@ -9,7 +9,13 @@ export default async function handler(req, res) {
     case "POST":
       const shirts = await db
         .collection("Products")
-        .insertOne({ item: "test", qty: 15, image: image });
+        .insertOne({
+          name: name,
+          description: description,
+          category: category,
+          price: price,
+          image: image,
+        });
 
       res.json({ status: 200, image: shirts });
       break;
