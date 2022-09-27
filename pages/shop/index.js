@@ -10,14 +10,13 @@ const index = ({ categories }) => {
           Shop
         </h1>
       </div>
-      <div className="flex justify-center items-center w-full h-full font-Roboto text-xl">
-        <div className="flex flex-row h-fit w-3/4 gap-x-14 items-center">
+      <div className="flex justify-center items-center w-full h-full font-Roboto text-xl gap-x-14">
           {categories.map((category) => (
             <div key={category.name}>
               <Card name={category.name} url={`/shop/${category.name}`} />
             </div>
           ))}
-        </div>
+
       </div>
     </div>
   );
