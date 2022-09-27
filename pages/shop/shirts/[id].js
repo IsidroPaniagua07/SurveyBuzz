@@ -5,7 +5,6 @@ import connectToDatabase from "../../../utils/mongodb";
 import { ObjectId } from "mongodb";
 
 const Shirt = ({ shirt }) => {
-  console.log(shirt)
   return <ProductPage name={shirt.name} image={shirt.image} />;
 };
 
@@ -22,20 +21,20 @@ export const getStaticPaths = async () => {
       fallback: false,
     };
   } else {
-      const { db } = await connectToDatabase();
-      const shirts = await db
-        .collection("Products")
-        .find({ type: "shirt" })
-        .toArray();
+    const { db } = await connectToDatabase();
+    const shirts = await db
+      .collection("Products")
+      .find({ type: "shirt" })
+      .toArray();
 
-      const paths = shirts.map((shirt) => {
-        return {
-          params: { id: shirt._id.toString() },
-        };
-      });
+    const paths = shirts.map((shirt) => {
       return {
-        paths,
-        fallback: false,
+        params: { id: shirt._id.toString() },
+      };
+    });
+    return {
+      paths,
+      fallback: false,
     };
   }
 };
@@ -57,8 +56,8 @@ export const getStaticProps = async (context) => {
       .collection("Products")
       // .find({ _id: id })
       .find({ _id: ObjectId(id) })
-      .toArray()
-      
+      .toArray();
+
     return {
       props: { shirt: JSON.parse(JSON.stringify(shirt[0])) },
     };

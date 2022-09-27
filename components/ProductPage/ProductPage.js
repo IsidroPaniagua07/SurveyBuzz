@@ -4,19 +4,23 @@ const ProductPage = ({ name, image }) => {
   return (
     <>
       <div className="flex h-full w-full ">
-        <div className="h-full w-4/5">
-        <Image
+        <div className="h-full w-4/5 relative">
+          <Image
             src={image}
-            // layout='fill'
             width="100%"
             height="100%"
             alt={name}
-            className=""
+            layout='fill'
           />
         </div>
-        <div className="h-full w-1/5 bg-white rounded-md border-gray-300 border">
-        {name}
+        <div className="h-full w-1/5 bg-white border-gray-300 border">
+          <div className="flex h-[5%] w-full border-b justify-center items-center">
+          {name}
 
+          </div>
+          <div>
+            description
+          </div>
         </div>
       </div>
     </>
