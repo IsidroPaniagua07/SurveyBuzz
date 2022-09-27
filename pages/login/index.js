@@ -44,7 +44,7 @@ const index = () => {
         body: JSON.stringify({
           name: inputData.name,
           description: inputData.description,
-          type: inputData.category,
+          category: inputData.category,
           price: inputData.price,
           image: imageData.url,
         }),
