@@ -32,7 +32,7 @@ export async function getStaticProps() {
   const { db } = await connectToDatabase();
   const shirts = await db
     .collection("Products")
-    .find({ type: 'shirt' })
+    .find({ category: 'shirt' })
     .toArray()
 
   return {
