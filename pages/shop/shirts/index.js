@@ -4,7 +4,7 @@ import Card from "../../../components/Card/Card";
 
 const index = ({ shirts }) => {
   return (
-    <div className="flex flex-row gap-2">
+    <div className="flex flex-row gap-2 h-full w-full justify-center items-center">
       {shirts.map((shirt) => {
         return (
           <div key={shirt.name}>

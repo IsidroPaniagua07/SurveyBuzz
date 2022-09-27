@@ -2,7 +2,13 @@ import { useEffect, useState } from "react";
 
 const index = () => {
   // eslint-disable-next-line react-hooks/rules-of-hooks
-  const [data, setData] = useState({});
+  const [data, setData] = useState({
+    name: '',
+    description: '',
+    category: '',
+    price: '',
+    image: ''
+  });
   let server;
   !process.env.NODE_ENV || process.env.NODE_ENV === "development"
     ? (server = "http://localhost:3000")
@@ -36,7 +42,12 @@ const index = () => {
       {
         method: "POST",
         body: JSON.stringify({
+          name: data.name,
+          description: data.description,
+          type: "",
+          price: data.price,
           image: data.url,
+          
         }),
       }
     ).then((r) => r.json());
@@ -66,6 +77,13 @@ const index = () => {
           <label>Description:</label>
           <input id='description'
             onChange={(e) => handleOnChange(e)} className="border border-black" />
+        </div>
+        <div className="flex justify-between">
+          <label>Category:</label>
+          <select id='category' onChange={(e) => handleOnChange(e)} className="border border-black" >
+            <option value="mask">Mask</option>  
+            <option value="shirt">Shirt</option>  
+          </select>
         </div>
         <div className="flex justify-between">
           <label>Price:</label>
