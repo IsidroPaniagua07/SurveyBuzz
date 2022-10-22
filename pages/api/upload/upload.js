@@ -1,4 +1,4 @@
-import clientPromise from "../../lib/mongodb";
+import clientPromise from "../../../lib/mongodb";
 
 export default async function handler(req, res) {
   const { name, description, category, price, image } = JSON.parse(req.body);
