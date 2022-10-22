@@ -1,8 +1,5 @@
 import { useState } from "react";
 
-
-// 
-// 
 export default function Create() {
   const [data, setData] = useState({
     name: "",
@@ -15,13 +12,12 @@ export default function Create() {
     setData((prevState) => ({
       questions: [...prevState.questions, { question: "", input: "boolean" }],
     }));
-    console.log(data);
+    console.log(JSON.stringify(data));
   };
   const deleteQuestion = (index) => {
     let newArray = [...data.questions];
     newArray.splice(index, 1);
     setData({ questions: newArray });
-    console.log(newArray);
   };
   const editQuestionName = (e) => {
     const { id, value } = e.target;
@@ -45,7 +41,7 @@ export default function Create() {
         <input
           className="bg-white text-3xl mb-6 text-center p-2 mt-2 border border-slate-400 bg-inherit"
           placeholder="Name your survey"
-          onChange={(e) => setData({ ...data, data: e.target.value })}
+          onChange={(e) => setData({ ...data, name: e.target.value })}
         />
         <form
           className="flex flex-col h-fit w-full items-center gap-4"
