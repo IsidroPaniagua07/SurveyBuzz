@@ -1,5 +1,3 @@
-import { checkIsManualRevalidate } from "next/dist/server/api-utils";
-
 const Numeric= ({ data, updateAnswer, questionIndex }) => {
 
     const handleOnClick = (e) => {

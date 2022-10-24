@@ -3,6 +3,7 @@ import { useEffect, useReducer, useState } from "react";
 import surveyData from "../../data";
 import Boolean from "../../components/Questions/Boolean";
 import Numeric from '../../components/Questions/Numeric'
+import connectToDatabase from "../../utils/mongodb";
 
 export default function Survey({ survey }) {
   // get survey data
@@ -126,21 +127,51 @@ export default function Survey({ survey }) {
   );
 }
 
-export async function getStaticProps(context) {
-  const id = context.params.id;
-  const surveys = surveyData;
-  const survey = surveys.find((survey) => survey._id === parseInt(id));
+export const getStaticProps = async (context) => {
+  if (!process.env.NODE_ENV || process.env.NODE_ENV === "development") {
+    const id = context.params.id;
+    const surveys = surveyData;
+    const survey = surveys.find((survey) => survey._id === parseInt(id));
+  
+    return {
+      props: {
+        survey: survey,
+      },
+    };
+  } else {
+    const id = context.params.id;
+    const { db } = await connectToDatabase();
+    const survey = await db
+      .collection("Surveys")
+      .find({ _id: ObjectId(id) })
+      .toArray();
 
-  return {
-    props: {
-      survey: survey,
-    },
-  };
-}
+    return {
+      props: { survey: JSON.parse(JSON.stringify(survey[0])) },
+    };
+  }
+};
+
 
 export const getStaticPaths = async () => {
   if (!process.env.NODE_ENV || process.env.NODE_ENV === "development") {
     const surveys = surveyData;
+    const paths = surveys.map((survey) => {
+      return {
+        params: { id: survey._id.toString() },
+      };
+    });
+    return {
+      paths,
+      fallback: false,
+    };
+  } else {
+    const { db } = await connectToDatabase();
+    const surveys = await db
+      .collection("Surveys")
+      .find({})
+      .toArray();
+
     const paths = surveys.map((survey) => {
       return {
         params: { id: survey._id.toString() },

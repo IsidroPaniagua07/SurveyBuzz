@@ -14,7 +14,7 @@ export default function Home() {
             Survey Buzz.
           </h1>
           <div className="flex h-full w-full justify-center items-center">
-            <Link href='/create'>
+            <Link href='/survey/create'>
             <button
               className="flex h-fit bg-black font-bold text-xl text-white rounded-md justify-self-center py-4 px-10"
               >

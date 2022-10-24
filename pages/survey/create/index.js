@@ -9,31 +9,58 @@ export default function Create() {
     ],
   });
   const addQuestion = () => {
-    setData((prevState) => ({
-      questions: [...prevState.questions, { question: "", input: "boolean" }],
-    }));
-    console.log(JSON.stringify(data));
+    let newArray = [...data.questions];
+    newArray.push({ question: "", input: "boolean" });
+    setData((prev) => ({...prev, questions: newArray }));
+    
   };
   const deleteQuestion = (index) => {
     let newArray = [...data.questions];
     newArray.splice(index, 1);
-    setData({ questions: newArray });
+    setData((prev) => ({...prev, questions: newArray }));
   };
   const editQuestionName = (e) => {
     const { id, value } = e.target;
     let newArray = [...data.questions];
     newArray[id].question = value;
-    setData({ questions: newArray });
+    setData((prev) => ({...prev, questions: newArray }));
   };
   const editQuestioninput = (e) => {
     const { id, value } = e.target;
     let newArray = [...data.questions];
     newArray[id].input = value;
-    setData({ questions: newArray });
+    setData((prev) => ({...prev, questions: newArray }));
   };
 
   const handleSubmit = (e) => {
+    let server;
+    !process.env.NODE_ENV || process.env.NODE_ENV === "development"
+      ? (server = "http://localhost:3000")
+      : (server = "https://caudills-crafts.vercel.app");
     e.preventDefault();
+    let res = fetch(
+      // development build code
+
+      `${server}/api/upload`,
+      {
+        method: "POST",
+        body: JSON.stringify({
+          name: data.name,
+          questions: data.questions
+
+        }),
+      }
+    )
+    .then((r) => r.json())
+    .then(console.log(res));
+
+
+    // let res = fetch('http://localhost:3000/api/upload', {
+    //   method: 'POST',
+    //   body: JSON.stringify(data)
+    // })
+    // .then((res) => res.json())
+    // .then((data) => console.log(data))
   };
   return (
     <>
@@ -75,12 +102,18 @@ export default function Create() {
             );
           })}
         </form>
-        <div className="flex py-6">
+        <div className="flex py-6 gap-6">
           <button
             className="flex text-xl border-black border rounded-md px-2"
             onClick={addQuestion}
           >
             Add another question
+          </button>
+          <button
+            className="flex text-xl border-black border rounded-md px-2"
+            onClick={handleSubmit}
+          >
+            Submit
           </button>
         </div>
       </div>

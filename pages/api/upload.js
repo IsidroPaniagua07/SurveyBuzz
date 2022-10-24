@@ -1,23 +1,21 @@
-import clientPromise from "../../../lib/mongodb";
+import clientPromise from "../../lib/mongodb";
 
 export default async function handler(req, res) {
-  const { name, description, category, price, image } = JSON.parse(req.body);
+  const { name, questions } = JSON.parse(req.body);
 
   const client = await clientPromise;
-  const db = client.db("CaudillsCrafts");
+  const db = client.db("SurveyBuzz");
   switch (req.method) {
     case "POST":
       const shirts = await db
-        .collection("Products")
+        .collection("Surveys")
         .insertOne({
           name: name,
-          description: description,
-          category: category,
-          price: price,
-          image: image,
+          questions: questions,
+  
         });
 
-      res.json({ status: 200, image: shirts });
+      res.json({ status: 200 });
       break;
     // let bodyObject = JSON.parse(req.body);
     // let myPost = await db.collection("posts").insertOne(bodyObject);
