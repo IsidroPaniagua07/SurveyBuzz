@@ -1,9 +1,9 @@
-import { useRouter } from "next/router";
-import { useEffect, useReducer, useState } from "react";
+import { useEffect, useState } from "react";
 import surveyData from "../../data";
 import Boolean from "../../components/Questions/Boolean";
 import Numeric from '../../components/Questions/Numeric'
 import connectToDatabase from "../../utils/mongodb";
+import { ObjectId } from "mongodb";
 
 export default function Survey({ survey }) {
   // get survey data
