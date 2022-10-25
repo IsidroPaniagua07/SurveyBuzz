@@ -4,10 +4,10 @@ const nextConfig = {
   async rewrites() {
     return [
       {
-        source: '/api/:path*',
-        destination: 'https://surveybuzz.vercel.app/:path*'
-      }
-    ]
+        source: "/api/:path*",
+        destination: "https://surveybuzz.vercel.app/:path*",
+      },
+    ];
   },
   swcMinify: true,
   images: {
