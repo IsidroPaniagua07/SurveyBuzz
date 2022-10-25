@@ -54,7 +54,7 @@ export default function Create() {
       }
     )
     .then((r) => r.json())
-    .then(console.log(r))
+    .then(r => console.log(r))
     // .then(router.push(`${server}/pages/survey/1`));
 
 
