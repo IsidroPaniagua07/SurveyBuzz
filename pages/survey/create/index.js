@@ -36,7 +36,7 @@ export default function Create() {
     let server;
     !process.env.NODE_ENV || process.env.NODE_ENV === "development"
       ? (server = "http://localhost:3000")
-      : (server = "https://caudills-crafts.vercel.app");
+      : (server = "https://surveybuzz.vercel.app/");
     e.preventDefault();
     let res = fetch(
       // development build code
