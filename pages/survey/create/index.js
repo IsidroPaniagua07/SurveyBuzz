@@ -1,6 +1,8 @@
 import { useState } from "react";
+import {useRouter} from 'next/router'
 
 export default function Create() {
+  const router = useRouter()
   const [data, setData] = useState({
     name: "",
     questions: [
@@ -38,7 +40,7 @@ export default function Create() {
       ? (server = "http://localhost:3000")
       : (server = "https://surveybuzz.vercel.app/");
     e.preventDefault();
-    let res = fetch(
+    fetch(
       // development build code
 
       `${server}/api/upload`,
@@ -52,7 +54,8 @@ export default function Create() {
       }
     )
     .then((r) => r.json())
-    .then(console.log(res));
+    .then(console.log(r))
+    // .then(router.push(`${server}/pages/survey/1`));
 
 
     // let res = fetch('http://localhost:3000/api/upload', {
