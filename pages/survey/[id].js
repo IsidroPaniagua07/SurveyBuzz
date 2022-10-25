@@ -92,8 +92,10 @@ export default function Survey({ survey }) {
               </div>
             );
           })}
-          <button className="border border-black px-2 mt-10 bg-white rounded-[200px]">Submit</button>
+
+          <button className="border border-black px-2 mt-10 bg-slate-300 rounded-[200px]">Submit</button>
         </form>
+          <button className="underline mt-6 rounded-[200px]">View Responses</button>
       </div>
     </>
   );

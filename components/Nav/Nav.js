@@ -16,7 +16,7 @@ const Nav = () => {
 
       </form>
       <div className="flex flex-row gap-10 h-full w-1/3 justify-end items-center">
-        <Link href="/survey/create">
+        <Link href="/survey">
           <a>Create</a>
         </Link>
       </div>

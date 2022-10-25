@@ -1,8 +1,8 @@
 import { useState } from "react";
-import {useRouter} from 'next/router'
+import { useRouter } from "next/router";
 
 export default function Create() {
-  const router = useRouter()
+  const router = useRouter();
   const [data, setData] = useState({
     name: "",
     questions: [
@@ -13,25 +13,24 @@ export default function Create() {
   const addQuestion = () => {
     let newArray = [...data.questions];
     newArray.push({ question: "", input: "boolean" });
-    setData((prev) => ({...prev, questions: newArray }));
-    
+    setData((prev) => ({ ...prev, questions: newArray }));
   };
   const deleteQuestion = (index) => {
     let newArray = [...data.questions];
     newArray.splice(index, 1);
-    setData((prev) => ({...prev, questions: newArray }));
+    setData((prev) => ({ ...prev, questions: newArray }));
   };
   const editQuestionName = (e) => {
     const { id, value } = e.target;
     let newArray = [...data.questions];
     newArray[id].question = value;
-    setData((prev) => ({...prev, questions: newArray }));
+    setData((prev) => ({ ...prev, questions: newArray }));
   };
   const editQuestioninput = (e) => {
     const { id, value } = e.target;
     let newArray = [...data.questions];
     newArray[id].input = value;
-    setData((prev) => ({...prev, questions: newArray }));
+    setData((prev) => ({ ...prev, questions: newArray }));
   };
 
   const handleSubmit = (e) => {
@@ -45,18 +44,17 @@ export default function Create() {
 
       `${server}/api/upload`,
       {
-        method: "POST",
+        method: server==="http://localhost:3000"?"PUT":"POST",
         body: JSON.stringify({
           name: data.name,
-          questions: data.questions
-
+          questions: data.questions,
         }),
       }
     )
-    .then((r) => r.json())
-    .then(r => console.log(r))
-    // .then(router.push(`${server}/pages/survey/1`));
-
+      .then((r) => r.json())
+      .then((r) => {
+        if(r.status===200) router.push(`${server}/survey/${server==="http://localhost:3000"?'1':"635763cd7401a7f6069015d6"}`)
+      });
 
     // let res = fetch('http://localhost:3000/api/upload', {
     //   method: 'POST',
