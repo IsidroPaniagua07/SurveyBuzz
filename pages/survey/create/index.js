@@ -92,8 +92,8 @@ export default function Create() {
                   className="border border-black"
                   onChange={(e) => editQuestioninput(e)}
                 >
-                  <option value="numeric">Numeric</option>
                   <option value="boolean">True or False</option>
+                  <option value="numeric">Numeric</option>
                 </select>
                 <button id={index} onClick={(e) => deleteQuestion(e.target.id)}>
                   X

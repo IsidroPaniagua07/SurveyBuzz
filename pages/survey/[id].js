@@ -6,45 +6,17 @@ import connectToDatabase from "../../utils/mongodb";
 import { ObjectId } from "mongodb";
 
 export default function Survey({ survey }) {
-  // get survey data
   const [data, setData] = useState(null);
   const [isLoading, setLoading] = useState(false);
 
-  // const createUserArray = () => {
-  //   let newArray = []
 
-  // };
-  // const reducer = (userData, action) => {
-  //   switch (action.type) {
-  //     case "initialize":
-  //       return (
-  //         data?data.questions:null
-  //         // data.questions.map((element, index) => {
-  //         //   return {answer: '', index: index}
-  //         // })
-
-  //         )
-  //       ;
-  //     case "edit":
-  //       return "";
-  //     default:
-  //       return userData;
-  //   }
-  // };
-
-  // const [userData, dispatch] = useReducer(reducer, {asdf: 'test'});
   const updateAnswer = (id, value) => {
     console.log(id, value);
     let newArray = [...data];
     newArray[id].answer = value;
     setData(newArray);
   };
-  // const updateNumeric = (id, value) => {
-  //   console.log(id, value);
-  //   let newArray = [...data];
-  //   newArray[id].answer = value;
-  //   setData(newArray);
-  // };
+
 
   const handleSubmit = (e) => {
     e.preventDefault()
