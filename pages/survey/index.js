@@ -92,7 +92,7 @@ export default function Create() {
         process.env.EMAIL_SERVICE,
         process.env.EMAIL_TEMPLATE,
         template_params,
-        process.env.EMAIL_PUBLIC
+        'N-pEpiRpCaGkxGiWl'
       )
       .then(
         (result) => {
