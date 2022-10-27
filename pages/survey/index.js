@@ -53,7 +53,8 @@ export default function Create() {
     )
       .then((r) => r.json())
       .then((r) => {
-        if(r.status===200) router.push(`/survey/${server==="http://localhost:3000"?'1':"635763cd7401a7f6069015d6"}`)
+        console.log(r)
+        // if(r.status===200) router.push(`/survey/${server==="http://localhost:3000"?'1':"635763cd7401a7f6069015d6"}`)
       });
 
     // let res = fetch('http://localhost:3000/api/upload', {
