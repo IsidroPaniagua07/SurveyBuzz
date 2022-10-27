@@ -60,7 +60,6 @@ export default function Create() {
       .then((r) => r.json())
       .then((r) => {
         setSurveyId(r.survey.insertedId);
-        
 
         // if(r.status===200) router.push(`/survey/${server==="http://localhost:3000"?'1':"635763cd7401a7f6069015d6"}`)
       });
@@ -84,7 +83,9 @@ export default function Create() {
       <div className="flex h-full w-full justify-center items-center">
         <Modal isOpen={isOpen}>
           {!surveyId ? (
-            <h3>Loading</h3>
+            <div className="flex w-full justify-center">
+              <h3 className="flex h-[20%] text-4xl">Loading...</h3>
+            </div>
           ) : (
             <div className="h-full w-full flex flex-col bg-white">
               <div className="flex h-[10%] w-full justify-end items-start">
@@ -123,68 +124,68 @@ export default function Create() {
             Loading...
           </div>
         ) : ( */}
-          <div className="flex flex-col h-full w-full text-xl items-center px-2 bg-[#f1f5f9]">
-            <input
-              className="bg-white text-3xl mb-6 text-center p-2 mt-2 border border-slate-400 bg-inherit"
-              placeholder="Name your survey"
-              onChange={(e) => setData({ ...data, name: e.target.value })}
-            />
-            <form
-              className="flex flex-col h-fit w-full items-center gap-4"
-              onSubmit={(e) => handleSubmit(e)}
+        <div className="flex flex-col h-full w-full text-xl items-center px-2 bg-[#f1f5f9]">
+          <input
+            className="bg-white text-3xl mb-6 text-center p-2 mt-2 border border-slate-400 bg-inherit"
+            placeholder="Name your survey"
+            onChange={(e) => setData({ ...data, name: e.target.value })}
+          />
+          <form
+            className="flex flex-col h-fit w-full items-center gap-4"
+            onSubmit={(e) => handleSubmit(e)}
+          >
+            {data.questions.map((obj, index) => {
+              return (
+                <div key={index} className="flex flex-row gap-2 w-full">
+                  <input
+                    id={index}
+                    placeholder={
+                      index === 0 ? "Type your question here..." : null
+                    }
+                    className="border border-black w-full"
+                    value={obj.question}
+                    onChange={(e) => editQuestionName(e)}
+                  />
+                  <select
+                    defaultValue={obj.input}
+                    id={index}
+                    className="border border-black"
+                    onChange={(e) => editQuestioninput(e)}
+                  >
+                    <option value="boolean">True or False</option>
+                    <option value="numeric">Numeric</option>
+                  </select>
+                  <button
+                    id={index}
+                    onClick={(e) => deleteQuestion(e.target.id)}
+                  >
+                    X
+                  </button>
+                </div>
+              );
+            })}
+          </form>
+          <div className="flex py-6 gap-6">
+            <button
+              className="flex text-xl border-black border rounded-md px-2"
+              onClick={addQuestion}
             >
-              {data.questions.map((obj, index) => {
-                return (
-                  <div key={index} className="flex flex-row gap-2 w-full">
-                    <input
-                      id={index}
-                      placeholder={
-                        index === 0 ? "Type your question here..." : null
-                      }
-                      className="border border-black w-full"
-                      value={obj.question}
-                      onChange={(e) => editQuestionName(e)}
-                    />
-                    <select
-                      defaultValue={obj.input}
-                      id={index}
-                      className="border border-black"
-                      onChange={(e) => editQuestioninput(e)}
-                    >
-                      <option value="boolean">True or False</option>
-                      <option value="numeric">Numeric</option>
-                    </select>
-                    <button
-                      id={index}
-                      onClick={(e) => deleteQuestion(e.target.id)}
-                    >
-                      X
-                    </button>
-                  </div>
-                );
-              })}
-            </form>
-            <div className="flex py-6 gap-6">
-              <button
-                className="flex text-xl border-black border rounded-md px-2"
-                onClick={addQuestion}
-              >
-                Add another question
-              </button>
-              <button
-                className="flex text-xl border-black border rounded-md px-2"
-                onClick={handleSubmit}
-              >
-                Submit
-              </button>
-              <button
-                className="flex text-xl border-black border rounded-md px-2"
-                onClick={() => setIsOpen(true)}
-              >
-                Modal
-              </button>
-            </div>
+              Add another question
+            </button>
+            <button
+              className="flex text-xl border-black border rounded-md px-2"
+              onClick={handleSubmit}
+            >
+              Submit
+            </button>
+            <button
+              className="flex text-xl border-black border rounded-md px-2"
+              onClick={() => setIsOpen(true)}
+            >
+              Modal
+            </button>
           </div>
+        </div>
         {/* )
         } */}
       </div>
