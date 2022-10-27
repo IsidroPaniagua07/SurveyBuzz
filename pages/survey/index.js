@@ -81,10 +81,11 @@ export default function Create() {
 
   const emailData = {
     service_id: "service_n0fnz0v",
-    template_id: "service_n0fnz0v",
+    template_id: "template_scz37d9",
     user_id: "N-pEpiRpCaGkxGiWl",
     template_params: {
       username: "James",
+      to_email: "test@gmail.com",
       "message": "asdf...",
     },
   };
