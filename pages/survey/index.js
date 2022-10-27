@@ -81,19 +81,18 @@ export default function Create() {
   // }
 
   const template_params = {
-    username: "James",
     to_email: "test@gmail.com",
-    message: "asdf...",
+    message: surveyId,
   };
 
   const sendEmail = (e) => {
     e.preventDefault();
     emailjs
       .send(
-        "service_n0fnz0v",
-        "template_scz37d9",
+        process.env.EMAIL,
+        process.env.TEMPLATE,
         template_params,
-        "N-pEpiRpCaGkxGiWl"
+        process.env.PUBLIC
       )
       .then(
         (result) => {
