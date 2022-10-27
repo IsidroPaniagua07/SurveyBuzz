@@ -84,7 +84,7 @@ export default function Create() {
 
   const templateParams = {
     to_email: emailRef.current.value.toString(),
-    survey_id: surveyId,
+    survey_id: surveyId.toString(),
   };
 
   const sendEmail = (e) => {
