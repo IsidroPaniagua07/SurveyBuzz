@@ -101,11 +101,11 @@ export default function Create() {
               <div className="flex flex-col h-[20%] w-full justify-center items-center text-xl text-center gap-2">
                 <div>Share the survey:</div>
                 <Link href={`/survey/${surveyId}`}>
-                  <a>https://surveybuzz.vercel.app/survey/{surveyId}</a>
+                  <a target="_blank">https://surveybuzz.vercel.app/survey/{surveyId}</a>
                 </Link>
                 <div>View Results:</div>
                 <Link href={`/responses/${surveyId}`}>
-                  <a>https://surveybuzz.vercel.app/responses/{surveyId}</a>
+                  <a target="_blank">https://surveybuzz.vercel.app/responses/{surveyId}</a>
                 </Link>
               </div>
             </div>
