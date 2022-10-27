@@ -7,6 +7,7 @@ export default function Create() {
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
   const [surveyId, setSurveyId] = useState(null);
+  const [loading, setLoading] = useState(false)
   const [data, setData] = useState({
     name: "",
     questions: [
@@ -73,18 +74,18 @@ export default function Create() {
   // if (typeof window !== "undefined") {
   //   document.addEventListener("click", (event) => {
   //     if (event.target.id === "portalbackground" && isOpen === true) {
-  //       setIsOpen(false);
-  //     }
-  //   });
-  // }
-  return (
-    <>
-      <div>
+    //       setIsOpen(false);
+    //     }
+    //   });
+    // }
+    return (
+      <>
+
         <Modal isOpen={isOpen}>
           {!surveyId ? (
             <h3>Loading</h3>
-          ) : (
-            <div className="h-full w-full flex flex-col bg-white">
+            ) : (
+              <div className="h-full w-full flex flex-col bg-white">
               <div className="flex h-[10%] w-full justify-end items-start">
                 <Link href={"/"}>
                   <button className="p-2 px-4 text-xl">X</button>
@@ -93,10 +94,10 @@ export default function Create() {
               <h2 className="flex h-[10%] justify-center items-center text-4xl">
                 Congratulations!
               </h2>
-              <div className="flex h-[40%] w-full justify-center items-center text-xl text-center">
-                You finished your survey, your survey can be taken and you can
+              <div className="flex h-[40%] w-[90%] justify-center items-center text-xl text-center">
+                You finished creating your survey, it can be taken and you can
                 view the results at anytime. Use the button in the top right
-                corner when your finished.
+                corner to go back to the homepage.
               </div>
               <div className="flex flex-col h-[20%] w-full justify-center items-center text-xl text-center gap-2">
                 <div>Share the survey:</div>
@@ -111,17 +112,20 @@ export default function Create() {
             </div>
           )}
         </Modal>
-      </div>
+
+        {loading
+        ?<div className="flex justify-self-center place-items-center items-center ">Loading...</div>
+        :
       <div className="flex flex-col h-full w-full text-xl items-center px-2 bg-[#f1f5f9]">
         <input
           className="bg-white text-3xl mb-6 text-center p-2 mt-2 border border-slate-400 bg-inherit"
           placeholder="Name your survey"
           onChange={(e) => setData({ ...data, name: e.target.value })}
-        />
+          />
         <form
           className="flex flex-col h-fit w-full items-center gap-4"
           onSubmit={(e) => handleSubmit(e)}
-        >
+          >
           {data.questions.map((obj, index) => {
             return (
               <div key={index} className="flex flex-row gap-2 w-full">
@@ -133,13 +137,13 @@ export default function Create() {
                   className="border border-black w-full"
                   value={obj.question}
                   onChange={(e) => editQuestionName(e)}
-                />
+                  />
                 <select
                   defaultValue={obj.input}
                   id={index}
                   className="border border-black"
                   onChange={(e) => editQuestioninput(e)}
-                >
+                  >
                   <option value="boolean">True or False</option>
                   <option value="numeric">Numeric</option>
                 </select>
@@ -154,23 +158,24 @@ export default function Create() {
           <button
             className="flex text-xl border-black border rounded-md px-2"
             onClick={addQuestion}
-          >
+            >
             Add another question
           </button>
           <button
             className="flex text-xl border-black border rounded-md px-2"
             onClick={handleSubmit}
-          >
+            >
             Submit
           </button>
           <button
             className="flex text-xl border-black border rounded-md px-2"
             onClick={() => setIsOpen(true)}
-          >
+            >
             Modal
           </button>
         </div>
       </div>
+  }
     </>
   );
 }
