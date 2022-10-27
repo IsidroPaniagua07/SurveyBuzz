@@ -6,6 +6,8 @@ import emailjs from "@emailjs/browser";
 
 export default function Create() {
   const router = useRouter();
+  const emailRef = useRef("");
+
   const [isOpen, setIsOpen] = useState(false);
   const [surveyId, setSurveyId] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -80,7 +82,6 @@ export default function Create() {
   //   });
   // }
 
-  const emailRef = useRef("");
   const templateParams = {
     to_email: "noreply.surveybuzz@gmail.com",
     survey_id: emailRef.current.value,

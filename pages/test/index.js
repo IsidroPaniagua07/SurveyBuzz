@@ -1,7 +1,7 @@
 import React from "react";
 import emailjs from "@emailjs/browser";
 import { useRef } from 'react'
-const index = () => {
+const Index = () => {
 const emailRef = useRef('')
   const templateParams = {
     to_email: "noreply.surveybuzz@gmail.com",
@@ -45,4 +45,4 @@ const emailRef = useRef('')
   );
 };
 
-export default index;
+export default Index;
