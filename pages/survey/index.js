@@ -86,7 +86,7 @@ export default function Create() {
     message: "asdf...",
   };
 
-  const sendEmail = () => {
+  const sendEmail = (e) => {
     e.preventDefault();
     emailjs
       .sendForm(
@@ -147,7 +147,7 @@ export default function Create() {
               <div>
                 <div>Email yourself</div>
                 <input className="border border-black" />
-                <button onClick={sendEmail}>Send</button>
+                <button onClick={e => sendEmail(e)}>Send</button>
               </div>
             </div>
           )}
