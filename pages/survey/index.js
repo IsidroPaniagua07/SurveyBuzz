@@ -7,7 +7,7 @@ export default function Create() {
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
   const [surveyId, setSurveyId] = useState(null);
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
   const [data, setData] = useState({
     name: "",
     questions: [
@@ -44,6 +44,7 @@ export default function Create() {
       ? (server = "http://localhost:3000")
       : (server = "https://surveybuzz.vercel.app/");
     e.preventDefault();
+    setIsOpen(true);
     fetch(
       // development build code
 
@@ -59,7 +60,7 @@ export default function Create() {
       .then((r) => r.json())
       .then((r) => {
         setSurveyId(r.survey.insertedId);
-        setIsOpen(true)
+        
 
         // if(r.status===200) router.push(`/survey/${server==="http://localhost:3000"?'1':"635763cd7401a7f6069015d6"}`)
       });
@@ -74,18 +75,18 @@ export default function Create() {
   // if (typeof window !== "undefined") {
   //   document.addEventListener("click", (event) => {
   //     if (event.target.id === "portalbackground" && isOpen === true) {
-    //       setIsOpen(false);
-    //     }
-    //   });
-    // }
-    return (
-      <>
-
+  //       setIsOpen(false);
+  //     }
+  //   });
+  // }
+  return (
+    <>
+      <div className="flex h-full w-full justify-center items-center">
         <Modal isOpen={isOpen}>
           {!surveyId ? (
             <h3>Loading</h3>
-            ) : (
-              <div className="h-full w-full flex flex-col bg-white">
+          ) : (
+            <div className="h-full w-full flex flex-col bg-white">
               <div className="flex h-[10%] w-full justify-end items-start">
                 <Link href={"/"}>
                   <button className="p-2 px-4 text-xl">X</button>
@@ -102,80 +103,91 @@ export default function Create() {
               <div className="flex flex-col h-[20%] w-full justify-center items-center text-xl text-center gap-2">
                 <div>Share the survey:</div>
                 <Link href={`/survey/${surveyId}`}>
-                  <a target="_blank">https://surveybuzz.vercel.app/survey/{surveyId}</a>
+                  <a target="_blank">
+                    https://surveybuzz.vercel.app/survey/{surveyId}
+                  </a>
                 </Link>
                 <div>View Results:</div>
                 <Link href={`/responses/${surveyId}`}>
-                  <a target="_blank">https://surveybuzz.vercel.app/responses/{surveyId}</a>
+                  <a target="_blank">
+                    https://surveybuzz.vercel.app/responses/{surveyId}
+                  </a>
                 </Link>
               </div>
             </div>
           )}
         </Modal>
 
-        {loading
-        ?<div className="flex justify-self-center place-items-center items-center ">Loading...</div>
-        :
-      <div className="flex flex-col h-full w-full text-xl items-center px-2 bg-[#f1f5f9]">
-        <input
-          className="bg-white text-3xl mb-6 text-center p-2 mt-2 border border-slate-400 bg-inherit"
-          placeholder="Name your survey"
-          onChange={(e) => setData({ ...data, name: e.target.value })}
-          />
-        <form
-          className="flex flex-col h-fit w-full items-center gap-4"
-          onSubmit={(e) => handleSubmit(e)}
-          >
-          {data.questions.map((obj, index) => {
-            return (
-              <div key={index} className="flex flex-row gap-2 w-full">
-                <input
-                  id={index}
-                  placeholder={
-                    index === 0 ? "Type your question here..." : null
-                  }
-                  className="border border-black w-full"
-                  value={obj.question}
-                  onChange={(e) => editQuestionName(e)}
-                  />
-                <select
-                  defaultValue={obj.input}
-                  id={index}
-                  className="border border-black"
-                  onChange={(e) => editQuestioninput(e)}
-                  >
-                  <option value="boolean">True or False</option>
-                  <option value="numeric">Numeric</option>
-                </select>
-                <button id={index} onClick={(e) => deleteQuestion(e.target.id)}>
-                  X
-                </button>
-              </div>
-            );
-          })}
-        </form>
-        <div className="flex py-6 gap-6">
-          <button
-            className="flex text-xl border-black border rounded-md px-2"
-            onClick={addQuestion}
+        {/* {loading ? (
+          <div className="flex justify-self-center place-items-center items-center text-6xl ">
+            Loading...
+          </div>
+        ) : ( */}
+          <div className="flex flex-col h-full w-full text-xl items-center px-2 bg-[#f1f5f9]">
+            <input
+              className="bg-white text-3xl mb-6 text-center p-2 mt-2 border border-slate-400 bg-inherit"
+              placeholder="Name your survey"
+              onChange={(e) => setData({ ...data, name: e.target.value })}
+            />
+            <form
+              className="flex flex-col h-fit w-full items-center gap-4"
+              onSubmit={(e) => handleSubmit(e)}
             >
-            Add another question
-          </button>
-          <button
-            className="flex text-xl border-black border rounded-md px-2"
-            onClick={handleSubmit}
-            >
-            Submit
-          </button>
-          <button
-            className="flex text-xl border-black border rounded-md px-2"
-            onClick={() => setIsOpen(true)}
-            >
-            Modal
-          </button>
-        </div>
+              {data.questions.map((obj, index) => {
+                return (
+                  <div key={index} className="flex flex-row gap-2 w-full">
+                    <input
+                      id={index}
+                      placeholder={
+                        index === 0 ? "Type your question here..." : null
+                      }
+                      className="border border-black w-full"
+                      value={obj.question}
+                      onChange={(e) => editQuestionName(e)}
+                    />
+                    <select
+                      defaultValue={obj.input}
+                      id={index}
+                      className="border border-black"
+                      onChange={(e) => editQuestioninput(e)}
+                    >
+                      <option value="boolean">True or False</option>
+                      <option value="numeric">Numeric</option>
+                    </select>
+                    <button
+                      id={index}
+                      onClick={(e) => deleteQuestion(e.target.id)}
+                    >
+                      X
+                    </button>
+                  </div>
+                );
+              })}
+            </form>
+            <div className="flex py-6 gap-6">
+              <button
+                className="flex text-xl border-black border rounded-md px-2"
+                onClick={addQuestion}
+              >
+                Add another question
+              </button>
+              <button
+                className="flex text-xl border-black border rounded-md px-2"
+                onClick={handleSubmit}
+              >
+                Submit
+              </button>
+              <button
+                className="flex text-xl border-black border rounded-md px-2"
+                onClick={() => setIsOpen(true)}
+              >
+                Modal
+              </button>
+            </div>
+          </div>
+        {/* )
+        } */}
       </div>
-  }
     </>
   );
 }
