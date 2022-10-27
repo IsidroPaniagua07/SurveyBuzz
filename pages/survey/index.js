@@ -53,7 +53,7 @@ export default function Create() {
     )
       .then((r) => r.json())
       .then((r) => {
-        console.log(r)
+        console.log(r.survey.insertedId)
         // if(r.status===200) router.push(`/survey/${server==="http://localhost:3000"?'1':"635763cd7401a7f6069015d6"}`)
       });
 
