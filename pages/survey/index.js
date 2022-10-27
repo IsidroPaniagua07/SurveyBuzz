@@ -84,7 +84,7 @@ export default function Create() {
         <Modal isOpen={isOpen}>
           {!surveyId ? (
             <div className="flex w-full justify-center">
-              <h3 className="flex h-[20%] text-4xl">Loading...</h3>
+              <h3 className="flex h-[20%] text-4xl justify-center items-center">Loading...</h3>
             </div>
           ) : (
             <div className="h-full w-full flex flex-col bg-white">
