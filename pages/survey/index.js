@@ -6,7 +6,7 @@ import Link from "next/link";
 export default function Create() {
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
-  const [surveyId, setSurveyId] = useState(null)
+  const [surveyId, setSurveyId] = useState(null);
   const [data, setData] = useState({
     name: "",
     questions: [
@@ -57,7 +57,9 @@ export default function Create() {
     )
       .then((r) => r.json())
       .then((r) => {
-        setSurveyId(r.survey.insertedId)
+        setSurveyId(r.survey.insertedId);
+        setIsOpen(true)
+
         // if(r.status===200) router.push(`/survey/${server==="http://localhost:3000"?'1':"635763cd7401a7f6069015d6"}`)
       });
 
@@ -79,30 +81,35 @@ export default function Create() {
     <>
       <div>
         <Modal isOpen={isOpen}>
-          <div className="h-full w-full flex flex-col bg-white">
-            <div className="flex h-[10%] w-full justify-end items-start">
-              <Link href={'/'}>
-              <button className="p-2 px-4 text-xl">X</button>
-              </Link>
-            </div>
+          {!surveyId ? (
+            <h3>Loading</h3>
+          ) : (
+            <div className="h-full w-full flex flex-col bg-white">
+              <div className="flex h-[10%] w-full justify-end items-start">
+                <Link href={"/"}>
+                  <button className="p-2 px-4 text-xl">X</button>
+                </Link>
+              </div>
               <h2 className="flex h-[10%] justify-center items-center text-4xl">
                 Congratulations!
               </h2>
               <div className="flex h-[40%] w-full justify-center items-center text-xl text-center">
                 You finished your survey, your survey can be taken and you can
-                view the results at anytime. Use the button in the top right corner when your finished.
+                view the results at anytime. Use the button in the top right
+                corner when your finished.
               </div>
               <div className="flex flex-col h-[20%] w-full justify-center items-center text-xl text-center gap-2">
                 <div>Share the survey:</div>
                 <Link href={`/survey/${surveyId}`}>
-                <a>https://surveybuzz.vercel.app/survey/{surveyId}</a>
+                  <a>https://surveybuzz.vercel.app/survey/{surveyId}</a>
                 </Link>
                 <div>View Results:</div>
                 <Link href={`/responses/${surveyId}`}>
-                <a>https://surveybuzz.vercel.app/responses/{surveyId}</a>
+                  <a>https://surveybuzz.vercel.app/responses/{surveyId}</a>
                 </Link>
               </div>
-          </div>
+            </div>
+          )}
         </Modal>
       </div>
       <div className="flex flex-col h-full w-full text-xl items-center px-2 bg-[#f1f5f9]">
