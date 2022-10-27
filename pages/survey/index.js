@@ -6,9 +6,8 @@ import Link from "next/link";
 export default function Create() {
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
-  const [modalData, setModalData] = useState(null)
+  const [surveyId, setSurveyId] = useState(null)
   const [data, setData] = useState({
-    url: "",
     name: "",
     questions: [
       { question: "", input: "boolean" },
@@ -58,7 +57,7 @@ export default function Create() {
     )
       .then((r) => r.json())
       .then((r) => {
-        console.log(r.survey.insertedId);
+        setSurveyId(r.survey.insertedId)
         // if(r.status===200) router.push(`/survey/${server==="http://localhost:3000"?'1':"635763cd7401a7f6069015d6"}`)
       });
 
@@ -95,9 +94,13 @@ export default function Create() {
               </div>
               <div className="flex flex-col h-[20%] w-full justify-center items-center text-xl text-center gap-2">
                 <div>Share the survey:</div>
-                <p>link</p>
+                <Link href={`/survey/${surveyId}`}>
+                <a>https://surveybuzz.vercel.app/survey/{surveyId}</a>
+                </Link>
                 <div>View Results:</div>
-                <p>link</p>
+                <Link href={`/responses/${surveyId}`}>
+                <a>https://surveybuzz.vercel.app/responses/{surveyId}</a>
+                </Link>
               </div>
           </div>
         </Modal>
