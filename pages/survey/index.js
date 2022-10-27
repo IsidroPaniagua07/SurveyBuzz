@@ -1,9 +1,14 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
+import Modal from "../../components/Modal/Modal";
+import Link from "next/link";
 
 export default function Create() {
   const router = useRouter();
+  const [isOpen, setIsOpen] = useState(false);
+  const [modalData, setModalData] = useState(null)
   const [data, setData] = useState({
+    url: "",
     name: "",
     questions: [
       { question: "", input: "boolean" },
@@ -44,7 +49,7 @@ export default function Create() {
 
       `${server}/api/upload`,
       {
-        method: server==="http://localhost:3000"?"PUT":"POST",
+        method: server === "http://localhost:3000" ? "PUT" : "POST",
         body: JSON.stringify({
           name: data.name,
           questions: data.questions,
@@ -53,7 +58,7 @@ export default function Create() {
     )
       .then((r) => r.json())
       .then((r) => {
-        console.log(r.survey.insertedId)
+        console.log(r.survey.insertedId);
         // if(r.status===200) router.push(`/survey/${server==="http://localhost:3000"?'1':"635763cd7401a7f6069015d6"}`)
       });
 
@@ -64,8 +69,39 @@ export default function Create() {
     // .then((res) => res.json())
     // .then((data) => console.log(data))
   };
+  // if (typeof window !== "undefined") {
+  //   document.addEventListener("click", (event) => {
+  //     if (event.target.id === "portalbackground" && isOpen === true) {
+  //       setIsOpen(false);
+  //     }
+  //   });
+  // }
   return (
     <>
+      <div>
+        <Modal isOpen={isOpen}>
+          <div className="h-full w-full flex flex-col bg-white">
+            <div className="flex h-[10%] w-full justify-end items-start">
+              <Link href={'/'}>
+              <button className="p-2 px-4 text-xl">X</button>
+              </Link>
+            </div>
+              <h2 className="flex h-[10%] justify-center items-center text-4xl">
+                Congratulations!
+              </h2>
+              <div className="flex h-[40%] w-full justify-center items-center text-xl text-center">
+                You finished your survey, your survey can be taken and you can
+                view the results at anytime. Use the button in the top right corner when your finished.
+              </div>
+              <div className="flex flex-col h-[20%] w-full justify-center items-center text-xl text-center gap-2">
+                <div>Share the survey:</div>
+                <p>link</p>
+                <div>View Results:</div>
+                <p>link</p>
+              </div>
+          </div>
+        </Modal>
+      </div>
       <div className="flex flex-col h-full w-full text-xl items-center px-2 bg-[#f1f5f9]">
         <input
           className="bg-white text-3xl mb-6 text-center p-2 mt-2 border border-slate-400 bg-inherit"
@@ -116,6 +152,12 @@ export default function Create() {
             onClick={handleSubmit}
           >
             Submit
+          </button>
+          <button
+            className="flex text-xl border-black border rounded-md px-2"
+            onClick={() => setIsOpen(true)}
+          >
+            Modal
           </button>
         </div>
       </div>
