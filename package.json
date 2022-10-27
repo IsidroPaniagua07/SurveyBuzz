@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emailjs/browser": "^3.7.0",
     "dotenv": "^16.0.2",
     "mongodb": "^4.9.1",
     "mongoose": "^6.5.4",

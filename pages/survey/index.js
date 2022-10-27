@@ -78,13 +78,38 @@ export default function Create() {
   //     }
   //   });
   // }
+
+  const emailData = {
+    service_id: "service_n0fnz0v",
+    template_id: "service_n0fnz0v",
+    user_id: "N-pEpiRpCaGkxGiWl",
+    template_params: {
+      username: "James",
+      "message": "asdf...",
+    },
+  };
+const sendEmail = () => {
+  fetch("https://api.emailjs.com/api/v1.0/email/send", {
+    type: "POST",
+    data: JSON.stringify(emailData),
+    contentType: "application/json",
+  })
+  .then(function () {
+    alert("Your mail is sent!");
+  })
+  .catch(function (error) {
+    alert("Oops... " + JSON.stringify(error));
+  });
+}
   return (
     <>
       <div className="flex h-full w-full justify-center items-center">
         <Modal isOpen={isOpen}>
           {!surveyId ? (
             <div className="flex w-full justify-center">
-              <h3 className="flex h-[20%] text-4xl justify-center items-center">Loading...</h3>
+              <h3 className="flex h-[20%] text-4xl justify-center items-center">
+                Loading...
+              </h3>
             </div>
           ) : (
             <div className="h-full w-full flex flex-col bg-white">
@@ -114,6 +139,11 @@ export default function Create() {
                     https://surveybuzz.vercel.app/responses/{surveyId}
                   </a>
                 </Link>
+              </div>
+              <div>
+                <div>Email yourself</div>
+                <input className="border border-black" />
+                <button>Send</button>
               </div>
             </div>
           )}

@@ -19,6 +19,9 @@ const Nav = () => {
         <Link href="/survey">
           <a>Create</a>
         </Link>
+        <Link href="/search">
+          <a>Search</a>
+        </Link>
       </div>
     </nav>
   );
