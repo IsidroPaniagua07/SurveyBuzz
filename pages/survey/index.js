@@ -144,7 +144,7 @@ const sendEmail = () => {
               <div>
                 <div>Email yourself</div>
                 <input className="border border-black" />
-                <button>Send</button>
+                <button onClick={sendEmail}>Send</button>
               </div>
             </div>
           )}
