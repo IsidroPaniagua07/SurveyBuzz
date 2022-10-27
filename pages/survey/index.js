@@ -83,7 +83,7 @@ export default function Create() {
   // }
 
   const templateParams = {
-    to_email: emailRef.current.value,
+    to_email: 'isidropaniagua07@gmail.com',
     message: surveyId,
   };
 
