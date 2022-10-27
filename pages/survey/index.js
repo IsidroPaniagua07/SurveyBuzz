@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useRouter } from "next/router";
 import Modal from "../../components/Modal/Modal";
 import Link from "next/link";
@@ -80,26 +80,28 @@ export default function Create() {
   //   });
   // }
 
-  const template_params = {
-    to_email: "test@gmail.com",
-    message: surveyId,
+  const emailRef = useRef("");
+  const templateParams = {
+    to_email: "noreply.surveybuzz@gmail.com",
+    survey_id: emailRef.current.value,
   };
 
   const sendEmail = (e) => {
     e.preventDefault();
+    console.log(emailRef.current.value);
     emailjs
       .send(
-        process.env.EMAIL_SERVICE,
-        process.env.EMAIL_TEMPLATE,
-        template_params,
-        'N-pEpiRpCaGkxGiWl'
+        process.env.NEXT_PUBLIC_EMAIL_SERVICE,
+        process.env.NEXT_PUBLIC_EMAIL_TEMPLATE,
+        templateParams,
+        process.env.NEXT_PUBLIC_EMAIL_PUBLIC
       )
       .then(
         (result) => {
-          console.log(result.text);
+          alert("SUCCESS!");
         },
         (error) => {
-          console.log(error.text);
+          alert("FAILED...");
         }
       );
   };
@@ -143,10 +145,21 @@ export default function Create() {
                   </a>
                 </Link>
               </div>
-              <div>
-                <div>Email yourself</div>
-                <input className="border border-black" />
-                <button onClick={e => sendEmail(e)}>Send</button>
+              <div className="flex flex-col w-full justify-center items-center gap-2">
+                <div className="text-lg">Email survey links</div>
+                <input
+                  ref={emailRef}
+                  className="border border-black"
+                  required
+                  placeholder="Email"
+                />
+                <button
+                  className="bg-black text-white
+       px-2"
+                  onClick={(e) => sendEmail(e)}
+                >
+                  Send
+                </button>
               </div>
             </div>
           )}
