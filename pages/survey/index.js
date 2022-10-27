@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useRouter } from "next/router";
 import Modal from "../../components/Modal/Modal";
 import Link from "next/link";
+import emailjs from '@emailjs/browser';
 
 export default function Create() {
   const router = useRouter();
@@ -79,17 +80,14 @@ export default function Create() {
   //   });
   // }
 
-  const emailData = {
-    service_id: "service_n0fnz0v",
-    template_id: "template_scz37d9",
-    user_id: "N-pEpiRpCaGkxGiWl",
-    template_params: {
+  const template_params = {
       username: "James",
       to_email: "test@gmail.com",
-      "message": "asdf...",
-    },
-  };
+      message: "asdf...",
+    }
+
 const sendEmail = () => {
+  e.preventDefault()
   fetch("https://api.emailjs.com/api/v1.0/email/send", {
     type: "POST",
     data: JSON.stringify(emailData),
@@ -102,6 +100,14 @@ const sendEmail = () => {
     alert("Oops... " + JSON.stringify(error));
   });
 }
+emailjs.sendForm('service_n0fnz0v', 'template_scz37d9', template_params, 'N-pEpiRpCaGkxGiWl')
+.then((result) => {
+    console.log(result.text);
+}, (error) => {
+    console.log(error.text);
+});
+
+
   return (
     <>
       <div className="flex h-full w-full justify-center items-center">
