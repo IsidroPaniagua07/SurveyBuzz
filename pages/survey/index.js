@@ -83,8 +83,8 @@ export default function Create() {
   // }
 
   const templateParams = {
-    to_email: "noreply.surveybuzz@gmail.com",
-    survey_id: emailRef.current.value,
+    to_email: emailRef.current.value,
+    message: surveyId,
   };
 
   const sendEmail = (e) => {
