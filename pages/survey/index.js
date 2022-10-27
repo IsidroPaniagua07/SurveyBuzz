@@ -88,21 +88,15 @@ export default function Create() {
 
   const sendEmail = (e) => {
     e.preventDefault();
-    emailjs
-      .sendForm(
-        "service_n0fnz0v",
-        "template_scz37d9",
-        template_params,
-        "N-pEpiRpCaGkxGiWl"
-      )
-      .then(
-        (result) => {
-          console.log(result.text);
-        },
-        (error) => {
-          console.log(error.text);
-        }
-      );
+    emailjs.send("service_n0fnz0v", "template_scz37d9", template_params)
+    .then(
+      (result) => {
+        console.log(result.text);
+      },
+      (error) => {
+        console.log(error.text);
+      }
+    );
   };
 
   return (
@@ -147,7 +141,7 @@ export default function Create() {
               <div>
                 <div>Email yourself</div>
                 <input className="border border-black" />
-                <button onClick={e => sendEmail(e)}>Send</button>
+                <button onClick={(e) => sendEmail(e)}>Send</button>
               </div>
             </div>
           )}
