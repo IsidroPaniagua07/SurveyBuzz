@@ -89,10 +89,10 @@ export default function Create() {
     e.preventDefault();
     emailjs
       .send(
-        process.env.EMAIL,
-        process.env.TEMPLATE,
+        process.env.EMAIL_SERVICE,
+        process.env.EMAIL_TEMPLATE,
         template_params,
-        process.env.PUBLIC
+        process.env.EMAIL_PUBLIC
       )
       .then(
         (result) => {
