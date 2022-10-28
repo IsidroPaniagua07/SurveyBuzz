@@ -89,13 +89,13 @@ export default function Create() {
 
   const sendEmail = (e) => {
     e.preventDefault();
-    console.log(emailRef.current.value);
     console.log(surveyId);
+    console.log(emailRef.current.value);
     emailjs
       .send(
         process.env.NEXT_PUBLIC_EMAIL_SERVICE,
         process.env.NEXT_PUBLIC_EMAIL_TEMPLATE,
-        templateParams,
+        { to_email: emailRef.current.value.toString(), survey_id: surveyId },
         process.env.NEXT_PUBLIC_EMAIL_PUBLIC
       )
       .then(
