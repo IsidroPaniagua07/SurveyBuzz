@@ -82,14 +82,15 @@ export default function Create() {
   //   });
   // }
 
-  const templateParams = {
-    to_email: emailRef.current.value.toString(),
-    survey_id: surveyId.toString(),
-  };
+  // const templateParams = {
+  //   to_email: emailRef.current.value.toString(),
+  //   survey_id: surveyId.toString(),
+  // };
 
   const sendEmail = (e) => {
     e.preventDefault();
     console.log(surveyId);
+    console.log(typeof(surveyId));
     console.log(emailRef.current.value);
     emailjs
       .send(
