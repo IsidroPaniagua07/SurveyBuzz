@@ -90,6 +90,7 @@ export default function Create() {
   const sendEmail = (e) => {
     e.preventDefault();
     console.log(emailRef.current.value);
+    console.log(surveyId);
     emailjs
       .send(
         process.env.NEXT_PUBLIC_EMAIL_SERVICE,
