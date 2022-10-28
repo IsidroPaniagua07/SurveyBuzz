@@ -1,61 +1,9 @@
-import { useEffect, useState } from "react";
-import Boolean from "../../components/Questions/Boolean";
-import Numeric from '../../components/Questions/Numeric'
 import connectToDatabase from "../../utils/mongodb";
 import { ObjectId } from "mongodb";
+import { useState } from "react";
 
-export default function Survey({ survey }) {
-  const [data, setData] = useState(null);
-
-  const updateAnswer = (id, value) => {
-    console.log(id, value);
-    let newData = {...data};
-    newData.questions[id].answer = value;
-    setData(newData);
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    let server;
-    !process.env.NODE_ENV || process.env.NODE_ENV === "development"
-      ? (server = "http://localhost:3000")
-      : (server = "https://surveybuzz.vercel.app/");
-
-    // setIsOpen(true);
-    fetch(
-      // development build code
-
-      `${server}/api/results`,
-      {
-        method: "POST",
-        body: JSON.stringify({
-          name: data.name,
-          questions: data.questions,
-        }),
-      }
-    )
-      .then((r) => r.json())
-      .then(r => console.log(r))
-
-  };
-
-  
-
-  useEffect(() => {
-    console.log(survey)
-    let questions = survey.questions.map((obj, index) => {
-      return {
-        name: obj.question,
-        index: index,
-        question: obj.question,
-        type: obj.input,
-        answer: ''
-      };
-    });
-    setData({name: survey.name , questions});
-    console.log({name: survey.name , questions})
-  }, [survey]);
-
+export default function Results({ survey }) {
+  const [results, setResults] = useState(null)
   return (
     <>
       <div className="flex flex-col h-full w-full text-xl items-center px-2 bg-[#f1f5f9]">
@@ -79,22 +27,24 @@ export default function Survey({ survey }) {
                   {obj.question}
                 </div>
                 {obj.input === "boolean" ? (
-                  <Boolean updateAnswer={updateAnswer} questionIndex={index} />
-                ) : null}
+                  <div>boool</div>
+                  // <Boolean updateAnswer={updateAnswer} questionIndex={index} />
+                  ) : null}
                 {obj.input === "numeric" ? (
-                  <Numeric updateAnswer={updateAnswer} questionIndex={index} />
+                  <div>boool</div>
+                  // <Numeric updateAnswer={updateAnswer} questionIndex={index} />
                 ) : null}
               </div>
             );
           })}
 
-          <button type="submit" className="border border-black px-2 mt-10 bg-slate-300 rounded-[200px]">Submit</button>
+          <button className="border border-black px-2 mt-10 bg-slate-300 rounded-[200px]">Submit</button>
         </form>
-          <button className="underline mt-6 rounded-[200px]">View Responses</button>
       </div>
     </>
   );
 }
+  
 
 export const getStaticProps = async (context) => {
     const id = context.params.id;
@@ -103,7 +53,7 @@ export const getStaticProps = async (context) => {
       .collection("Surveys")
       .find({ _id: ObjectId(id) })
       .toArray();
-
+// get survey for name then get results
     return {
       props: { survey: JSON.parse(JSON.stringify(survey[0])) },
     };
@@ -112,11 +62,13 @@ export const getStaticProps = async (context) => {
 
 
 export const getStaticPaths = async () => {
+
     const { db } = await connectToDatabase();
     const surveys = await db
       .collection("Surveys")
       .find({})
       .toArray();
+
     const paths = surveys.map((survey) => {
       return {
         params: { id: survey._id.toString() },
@@ -127,4 +79,3 @@ export const getStaticPaths = async () => {
       fallback: 'blocking',
     };
   }
-

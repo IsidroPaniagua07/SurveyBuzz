@@ -17,12 +17,5 @@ export default async function handler(req, res) {
 
       res.json({ status: 200, survey });
       break;
-    // let bodyObject = JSON.parse(req.body);
-    // let myPost = await db.collection("posts").insertOne(bodyObject);
-    // case "GET":
-    //   const allPosts = await db.collection("allPosts").find({}).toArray();
-    //   res.json({ status: 200, data: allPosts });
-    //   break;
-    // }
   }
 }

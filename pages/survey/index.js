@@ -1,16 +1,12 @@
 import { useState, useRef } from "react";
-import { useRouter } from "next/router";
 import Modal from "../../components/Modal/Modal";
 import Link from "next/link";
 import emailjs from "@emailjs/browser";
 
 export default function Create() {
-  const router = useRouter();
   const emailRef = useRef("");
-
   const [isOpen, setIsOpen] = useState(false);
   const [surveyId, setSurveyId] = useState(null);
-  const [loading, setLoading] = useState(false);
   const [data, setData] = useState({
     name: "",
     questions: [
@@ -51,9 +47,9 @@ export default function Create() {
     fetch(
       // development build code
 
-      `${server}/api/upload`,
+      `${server}/api/create`,
       {
-        method: server === "http://localhost:3000" ? "PUT" : "POST",
+        method: "POST",
         body: JSON.stringify({
           name: data.name,
           questions: data.questions,
@@ -63,35 +59,13 @@ export default function Create() {
       .then((r) => r.json())
       .then((r) => {
         setSurveyId(r.survey.insertedId);
-
-        // if(r.status===200) router.push(`/survey/${server==="http://localhost:3000"?'1':"635763cd7401a7f6069015d6"}`)
       });
-
-    // let res = fetch('http://localhost:3000/api/upload', {
-    //   method: 'POST',
-    //   body: JSON.stringify(data)
-    // })
-    // .then((res) => res.json())
-    // .then((data) => console.log(data))
   };
-  // if (typeof window !== "undefined") {
-  //   document.addEventListener("click", (event) => {
-  //     if (event.target.id === "portalbackground" && isOpen === true) {
-  //       setIsOpen(false);
-  //     }
-  //   });
-  // }
 
-  // const templateParams = {
-  //   to_email: emailRef.current.value.toString(),
-  //   survey_id: surveyId.toString(),
-  // };
 
   const sendEmail = (e) => {
     e.preventDefault();
-    console.log(surveyId);
-    console.log(typeof(surveyId));
-    console.log(emailRef.current.value);
+
     emailjs
       .send(
         process.env.NEXT_PUBLIC_EMAIL_SERVICE,
@@ -142,9 +116,9 @@ export default function Create() {
                   </a>
                 </Link>
                 <div>View Results:</div>
-                <Link href={`/responses/${surveyId}`}>
+                <Link href={`/results/${surveyId}`}>
                   <a target="_blank">
-                    https://surveybuzz.vercel.app/responses/{surveyId}
+                    https://surveybuzz.vercel.app/results/{surveyId}
                   </a>
                 </Link>
               </div>
