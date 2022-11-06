@@ -12,9 +12,9 @@ export default function Home() {
         <h1 className="flex h-1/3 w-full italic  justify-center items-center text-5xl font-bold">
           Survey Buzz.
         </h1>
-        <div className="w-full h-1/3 flex items-center justify-between px-2 font-RobotoMono  bg-slate-800 text-white">
+        <div className="w-full h-1/3 flex items-center justify-between px-2  bg-slate-800 text-white">
           <div className="flex flex-col h-full w-full justify-center items-center gap-10">
-            <span className="text-2xl">
+            <span className="">
               Create anonymous surveys to share and view the results later.
             </span>
             <Link href="/survey">
