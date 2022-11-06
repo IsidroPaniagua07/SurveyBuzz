@@ -15,7 +15,7 @@ export default function Home() {
         <div className="w-full h-1/3 flex items-center justify-between px-2 font-RobotoMono  bg-slate-800 text-white">
           <div className="flex flex-col h-full w-full justify-center items-center gap-10">
             <span className="text-2xl">
-              Create anonymous surveys to share and view the results later.
+              Create anonymous surveys to share and view the results later
             </span>
             <Link href="/survey">
               <button className="flex h-fit bg-black font-bold text-xl text-white rounded-md justify-self-center py-4 px-10">

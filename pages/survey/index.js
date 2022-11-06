@@ -142,48 +142,54 @@ export default function Create() {
           )}
         </Modal>
 
-        {/* {loading ? (
-          <div className="flex justify-self-center place-items-center items-center text-6xl ">
-            Loading...
-          </div>
-        ) : ( */}
         <div className="flex flex-col h-full w-full text-xl items-center px-2 bg-[#f1f5f9]">
-          <input
+          {/* <input
             className="bg-white text-3xl mb-6 text-center p-2 mt-2 border border-slate-400 bg-inherit"
             placeholder="Name your survey"
             onChange={(e) => setData({ ...data, name: e.target.value })}
-          />
+          /> */}
+          <div className="text-3xl mb-16 text-center p-2 mt-2 border border-slate-400" suppressContentEditableWarning contentEditable>
+            Name your survey
+          </div>
           <form
-            className="flex flex-col h-fit w-full items-center gap-4"
+            className="flex flex-col h-fit w-[70%] items-center gap-8"
             onSubmit={(e) => handleSubmit(e)}
           >
             {data.questions.map((obj, index) => {
               return (
-                <div key={index} className="flex flex-row gap-2 w-full">
-                  <input
+                <div key={index} className="flex flex-col w-full gap-4 items-center justify-between">
+                  <textarea
+                  
                     id={index}
+                    rows={3}
+   
                     placeholder={
                       index === 0 ? "Type your question here..." : null
                     }
-                    className="border border-black w-full"
+                    className="border border-black w-[50%]"
                     value={obj.question}
                     onChange={(e) => editQuestionName(e)}
                   />
+                  <div className="flex gap-4">
+
                   <select
                     defaultValue={obj.input}
                     id={index}
-                    className="border border-black"
+                    className="border border-black h-fit"
                     onChange={(e) => editQuestioninput(e)}
                   >
                     <option value="boolean">True or False</option>
                     <option value="numeric">Numeric</option>
                   </select>
                   <button
+                  className="rounded-md px-4 text-white bg-red-700"
                     id={index}
+                    type='button'
                     onClick={(e) => deleteQuestion(e.target.id)}
                   >
-                    X
+                    Delete
                   </button>
+                    </div>
                 </div>
               );
             })}
@@ -200,12 +206,6 @@ export default function Create() {
               onClick={handleSubmit}
             >
               Submit
-            </button>
-            <button
-              className="flex text-xl border-black border rounded-md px-2"
-              onClick={() => setIsOpen(true)}
-            >
-              Modal
             </button>
           </div>
         </div>
